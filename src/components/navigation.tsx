@@ -30,28 +30,30 @@ export function Navigation() {
           <div className="hidden md:flex items-center space-x-6">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuTrigger>Ürünler</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[600px] p-4">
-                    <div className="grid gap-3 md:grid-cols-2">
-                      {PRODUCT_CATEGORIES.map((category) => (
-                        <NavigationMenuLink key={category.id} asChild>
-                          <Link
-                            href={`/products/${category.id}`}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="text-sm font-medium leading-none">
-                              {category.name}
-                            </div>
-                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                              {category.description}
-                            </p>
-                          </Link>
-                        </NavigationMenuLink>
-                      ))}
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Ürünler</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[600px] p-4">
+                      <div className="grid gap-3 md:grid-cols-2">
+                        {PRODUCT_CATEGORIES.map((category) => (
+                          <NavigationMenuLink key={category.id} asChild>
+                            <Link
+                              href={`/products/${category.id}`}
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">
+                                {category.name}
+                              </div>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                {category.description}
+                              </p>
+                            </Link>
+                          </NavigationMenuLink>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </NavigationMenuContent>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 

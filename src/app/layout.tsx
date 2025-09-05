@@ -21,7 +21,11 @@ export const metadata: Metadata = {
   description: "phFormula ile cilt bakımında yenilikçi çözümler keşfedin. Profesyonel estetik ürünleri, uzman tedaviler ve kişisel cilt bakım danışmanlığı.",
   keywords: "phFormula, cilt bakımı, estetik, güzellik, anti-aging, peeling, serum, maske",
   authors: [{ name: "phFormula Turkey" }],
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
