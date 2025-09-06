@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { PRODUCTS, PRODUCT_CATEGORIES } from "@/types/product";
+import { getAllProducts, getCategories, getProductById } from "@/lib/products";
 import { ProductSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
 import { generateTurkishSEOTitle, generateTurkishSEODescription, generateTurkishKeywords, generateCanonicalUrl, generateHreflangAlternates } from "@/lib/seo";
 import { ProductPageClient } from "./client";
@@ -14,8 +14,8 @@ interface ProductPageProps {
 
 // Generate SEO metadata for product pages
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = PRODUCTS.find(p => p.id === params.product);
-  const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  const product = getAllProducts().find(p => p.id === params.product);
+  const category = getCategories().find(cat => cat.id === params.category);
   
   if (!product || !category) {
     return {
@@ -92,15 +92,15 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const product = PRODUCTS.find(p => p.id === params.product);
-  const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  const product = getAllProducts().find(p => p.id === params.product);
+  const category = getCategories().find(cat => cat.id === params.category);
   
   if (!product || !category || product.category.id !== category.id) {
     notFound();
   }
 
   // Related products from the same category
-  const relatedProducts = PRODUCTS
+  const relatedProducts = getAllProducts()
     .filter(p => p.category.id === category.id && p.id !== product.id)
     .slice(0, 3);
     

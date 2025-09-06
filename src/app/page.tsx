@@ -4,14 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Star, Shield, Sparkles, ShoppingCart, Instagram, Heart, Truck, Award, Users, Clock, MessageCircle, Zap, Crown } from "lucide-react";
-import { PRODUCT_CATEGORIES, PRODUCTS } from "@/types/product";
+import { getAllProducts, getCategories, getFeaturedProducts } from "@/lib/products";
 import { ScarcityIndicator, LiveActivity } from "@/components/psychology/ScarcityIndicator";
 import { QuickWhatsApp } from "@/components/psychology/WhatsAppOrder";
 import { MobileStickyWhatsApp } from "@/components/mobile/MobileWhatsAppOrder";
 
 export default function Home() {
-  const featuredProducts = PRODUCTS.slice(0, 6);
-  const bestSellerProducts = PRODUCTS.slice(6, 12);
+  const allProducts = getAllProducts();
+  const categories = getCategories();
+  const featuredProducts = getFeaturedProducts();
+  const bestSellerProducts = allProducts.slice(6, 12);
   
   // Add psychological elements
   const getRandomUrgency = () => Math.random() > 0.7;
@@ -158,7 +160,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PRODUCT_CATEGORIES.map((category, index) => (
+            {categories.map((category, index) => (
               <Card key={category.id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white hover:-translate-y-4 cursor-pointer">
                 <CardHeader className="text-center pb-8">
                   <div className="w-24 h-24 bg-black flex items-center justify-center mx-auto mb-8 group-hover:bg-gray-900 transition-all duration-300">

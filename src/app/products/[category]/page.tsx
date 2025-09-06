@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, MessageCircle, ArrowLeft, Star, Clock, Users, Eye, CheckCircle, Shield, Award, Truck, Heart, ShoppingCart, Crown, Gift, Zap, TrendingUp } from "lucide-react";
-import { PRODUCT_CATEGORIES, PRODUCTS } from "@/types/product";
+import { getAllProducts, getCategories, getProductsByCategory } from "@/lib/products";
 import { ScarcityIndicator, LiveActivity } from "@/components/psychology/ScarcityIndicator";
 import { generateTurkishSEOTitle } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: { category: string } }) {
-  const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  const category = getCategories().find(cat => cat.id === params.category);
   if (!category) return {};
   
   return {
@@ -25,13 +25,13 @@ interface CategoryPageProps {
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  const category = getCategories().find(cat => cat.id === params.category);
   
   if (!category) {
     notFound();
   }
 
-  const categoryProducts = PRODUCTS.filter(product => product.category.id === category.id);
+  const categoryProducts = getAllProducts().filter(product => product.category.id === category.id);
 
   return (
     <div className="min-h-screen">
@@ -393,7 +393,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PRODUCT_CATEGORIES
+            {getCategories()
               .filter(cat => cat.id !== category.id)
               .map((otherCategory, index) => (
                 <Card key={otherCategory.id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white text-center overflow-hidden">

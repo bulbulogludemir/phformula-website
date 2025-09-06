@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { PRODUCTS, PRODUCT_CATEGORIES } from '@/types/product';
+import { getAllProducts, getCategories } from '@/lib/products';
 
 // Ultra-optimized sitemap generation for Turkish market SEO
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -59,7 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Category pages - high priority for SEO
-  const categoryPages = PRODUCT_CATEGORIES.map((category) => ({
+  const categoryPages = getCategories().map((category) => ({
     url: `${baseUrl}/products/${category.id}`,
     lastModified: currentDate,
     changeFrequency: 'daily' as const,
@@ -67,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Individual product pages - optimized for e-commerce SEO
-  const productPages = PRODUCTS.map((product) => ({
+  const productPages = getAllProducts().map((product) => ({
     url: `${baseUrl}/products/${product.category.id}/${product.id}`,
     lastModified: currentDate,
     changeFrequency: product.inStock ? 'daily' as const : 'weekly' as const,
