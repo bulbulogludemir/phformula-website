@@ -37,7 +37,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
 
   if (viewMode === 'list') {
     return (
-      <Link href={`/products/all/${product.product_id}`} className="block">
+      <Link href={`/products/${product.product_id}`} className="block">
         <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
           <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
             <div className="relative w-full h-full">
@@ -66,7 +66,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
               <p className="text-sm text-gray-700 line-clamp-3">{excerpt}</p>
               <div className="flex flex-col sm:flex-row gap-2" onClick={(e) => e.stopPropagation()}>
                 <Button size="sm" variant="outline" asChild className="flex-1">
-                  <Link href={`/products/all/${product.product_id}`}>
+                  <Link href={`/products/${product.product_id}`}>
                     <Eye className="mr-2 h-4 w-4" />
                     İncele
                   </Link>
@@ -86,7 +86,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
   }
 
   return (
-    <Link href={`/products/all/${product.product_id}`} className="block">
+    <Link href={`/products/${product.product_id}`} className="block">
       <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
         <div className="relative aspect-square overflow-hidden">
           <Image
@@ -112,7 +112,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
             <p className="text-xs text-gray-600 line-clamp-2">{excerpt}</p>
             <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
               <Button size="sm" variant="outline" className="flex-1 text-xs h-8" asChild>
-                <Link href={`/products/all/${product.product_id}`}>
+                <Link href={`/products/${product.product_id}`}>
                   <Eye className="mr-1 h-3 w-3" />
                   İncele
                 </Link>
