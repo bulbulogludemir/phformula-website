@@ -49,9 +49,44 @@ export const getProductsByCategory = (category: string): Product[] => {
   return productsData.products.filter(p => {
     const name = p.name?.toLowerCase() || ''
     const description = p.description?.toLowerCase() || ''
-    const categoryLower = category.toLowerCase()
     
-    return name.includes(categoryLower) || description.includes(categoryLower)
+    // Map category IDs to their filtering logic (same as in getCategories)
+    switch (category) {
+      case 'temizleyiciler':
+        return name.includes('cleanse') || name.includes('temizley') || name.includes('exfo')
+      
+      case 'serumlar':
+        return name.includes('serum') || name.includes('vita') || name.includes('age')
+      
+      case 'kremler':
+        return name.includes('cream') || name.includes('krem') || name.includes('recovery') || name.includes('post')
+      
+      case 'maskeler':
+        return name.includes('mask') || name.includes('maske') || name.includes('clay')
+      
+      case 'güneş-koruma':
+        return name.includes('spf') || name.includes('protect') || name.includes('sun') || name.includes('uv')
+      
+      case 'bakım-kitleri':
+        return name.includes('kit') || name.includes('set') || description.includes('kit')
+      
+      case 'özel-çözümler':
+        return name.includes('solution') || name.includes('çözüm') || name.includes('active')
+      
+      case 'leke-tedavisi':
+        return name.includes('mela') || description.includes('pigment') || description.includes('leke')
+      
+      case 'akne-tedavisi':
+        return name.includes('ac.') || name.includes('akne') || description.includes('akne') || description.includes('sebum')
+      
+      case 'kızarıklık-tedavisi':
+        return name.includes('cr.') || description.includes('kızarıklık') || description.includes('hassas')
+      
+      default:
+        // Fallback to original logic for any unknown categories
+        const categoryLower = category.toLowerCase().replace(/-/g, ' ')
+        return name.includes(categoryLower) || description.includes(categoryLower)
+    }
   }) as Product[]
 }
 
