@@ -1,0 +1,98 @@
+# Ultra-optimized robots.txt for phFormula Turkey
+# Optimized for Turkish market SEO and Google crawling efficiency
+
+# Allow all search engines to index the site
+User-agent: *
+Allow: /
+
+# High-priority pages for crawlers
+Allow: /products/
+Allow: /products/*/
+Allow: /categories/
+Allow: /api/sitemap
+
+# Optimize crawl budget - disallow unnecessary pages
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /thank-you/
+Disallow: /search?*
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+Disallow: /*?campaign=*
+
+# Specific optimizations for Turkish market
+# Allow Turkish-specific pages
+Allow: /tr/
+Allow: /turkiye/
+Allow: /istanbul/
+Allow: /ankara/
+
+# Google-specific optimizations
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# Bing optimization for Turkish market
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex (popular in Turkey)
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Mobile-first indexing optimization
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Image optimization for product pages
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /products/*/images/
+Allow: /_next/image*
+
+# Block AI scrapers and unwanted bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemaps - Multiple formats for better indexing
+Sitemap: https://phformula.com.tr/sitemap.xml
+Sitemap: https://phformula.com.tr/sitemap-products.xml
+Sitemap: https://phformula.com.tr/sitemap-categories.xml
+Sitemap: https://phformula.com.tr/sitemap-images.xml
+
+# Host specification for Turkish domain
+Host: https://phformula.com.tr
+
+# Clean URLs preference
+Prefer: https://phformula.com.tr

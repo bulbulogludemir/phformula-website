@@ -1,10 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, MessageCircle, Phone, Star, Shield, Sparkles, Heart, Share2 } from "lucide-react";
+import { Metadata } from "next";
+import { ArrowLeft, MessageCircle, Phone, Star, Shield, Sparkles, Heart, Share2, ShoppingCart, Plus, Minus, Crown, Zap } from "lucide-react";
 import { PRODUCTS, PRODUCT_CATEGORIES } from "@/types/product";
+import { ScarcityIndicator, LiveActivity } from "@/components/psychology/ScarcityIndicator";
+import { WhatsAppOrder, QuickWhatsApp } from "@/components/psychology/WhatsAppOrder";
+import { MobileWhatsAppOrder, MobileStickyWhatsApp } from "@/components/mobile/MobileWhatsAppOrder";
+import { ProductSchema, BreadcrumbSchema } from "@/components/seo/StructuredData";
+import { generateTurkishSEOTitle, generateTurkishSEODescription, generateTurkishKeywords, generateCanonicalUrl, generateHreflangAlternates } from "@/lib/seo";
 
 interface ProductPageProps {
   params: {
@@ -13,18 +22,109 @@ interface ProductPageProps {
   };
 }
 
+// Generate SEO metadata for product pages
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const product = PRODUCTS.find(p => p.id === params.product);
+  const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  
+  if (!product || !category) {
+    return {
+      title: 'Ürün Bulunamadı | phFormula Türkiye',
+      description: 'Aradığınız ürün bulunamadı. Diğer premium cilt bakım ürünlerimizi keşfetmek için ürünler sayfasını ziyaret edin.',
+      robots: 'noindex, nofollow'
+    };
+  }
+
+  const canonicalUrl = generateCanonicalUrl(`/products/${category.id}/${product.id}`);
+  const title = generateTurkishSEOTitle(`${product.name} - ${category.name}`, category.name);
+  const description = generateTurkishSEODescription(
+    `${product.description} Premium ${category.name.toLowerCase()} kategorisinde özel fiyatlarla.`,
+    category.name,
+    true
+  );
+  const keywords = generateTurkishKeywords(product.name.toLowerCase(), category.name, true);
+  
+  const ogImage = `https://phformula.com.tr/products/${product.id}/og-image.webp`;
+  
+  return {
+    title,
+    description,
+    keywords: keywords.join(', '),
+    canonical: canonicalUrl,
+    
+    openGraph: {
+      title: `${product.name} | phFormula Türkiye - ${category.name}`,
+      description,
+      url: canonicalUrl,
+      siteName: 'phFormula Türkiye',
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${product.name} - phFormula Türkiye`,
+          type: 'image/webp'
+        }
+      ],
+      type: 'website',
+      locale: 'tr_TR',
+    },
+    
+    twitter: {
+      card: 'summary_large_image',
+      site: '@phformula_tr',
+      creator: '@phformula_tr',
+      title: `${product.name} - Özel Fiyat | phFormula Türkiye`,
+      description: `${product.description} ✓ %100 Orijinal ✓ Hızlı Teslimat ✓ WhatsApp Sipariş`,
+      images: [ogImage]
+    },
+    
+    alternates: {
+      canonical: canonicalUrl,
+      languages: generateHreflangAlternates(`/products/${category.id}/${product.id}`).reduce((acc, alt) => {
+        acc[alt.hrefLang] = alt.href;
+        return acc;
+      }, {} as Record<string, string>)
+    },
+    
+    other: {
+      'product:price:amount': 'Özel Fiyat',
+      'product:price:currency': 'TRY',
+      'product:availability': product.inStock ? 'instock' : 'oos',
+      'product:condition': 'new',
+      'product:retailer_item_id': product.id,
+      'product:brand': 'phFormula',
+      'product:category': category.name,
+      'og:image:width': '1200',
+      'og:image:height': '630'
+    }
+  };
+}
+
 export default function ProductPage({ params }: ProductPageProps) {
   const product = PRODUCTS.find(p => p.id === params.product);
   const category = PRODUCT_CATEGORIES.find(cat => cat.id === params.category);
+  
+  const [isExclusive, setIsExclusive] = useState(Math.random() > 0.5);
+  const [isUrgent, setIsUrgent] = useState(Math.random() > 0.7);
   
   if (!product || !category || product.category.id !== category.id) {
     notFound();
   }
 
+
   // Related products from the same category
   const relatedProducts = PRODUCTS
     .filter(p => p.category.id === category.id && p.id !== product.id)
     .slice(0, 3);
+    
+  // Breadcrumb data for structured data
+  const breadcrumbs = [
+    { name: 'Ana Sayfa', url: 'https://phformula.com.tr' },
+    { name: 'Ürünler', url: 'https://phformula.com.tr/products' },
+    { name: category.name, url: `https://phformula.com.tr/products/${category.id}` },
+    { name: product.name, url: `https://phformula.com.tr/products/${category.id}/${product.id}` }
+  ];
 
   const whatsappMessage = `Merhaba! ${product.name} ürünü hakkında detaylı bilgi almak ve sipariş vermek istiyorum. 
 
@@ -34,7 +134,20 @@ Kategori: ${category.name}
 Ürün hakkında daha fazla bilgi verebilir misiniz?`;
 
   return (
-    <div className="min-h-screen">
+    <>
+      {/* SEO Structured Data */}
+      <ProductSchema product={product} category={category} />
+      <BreadcrumbSchema breadcrumbs={breadcrumbs} />
+      
+      <LiveActivity />
+      {/* Responsive WhatsApp Buttons */}
+      <div className="block md:hidden">
+        <MobileStickyWhatsApp />
+      </div>
+      <div className="hidden md:block">
+        <QuickWhatsApp />
+      </div>
+      <div className="min-h-screen" itemScope itemType="https://schema.org/Product">
       {/* Breadcrumb */}
       <section className="bg-gray-50 py-4">
         <div className="container mx-auto px-4">
@@ -110,58 +223,87 @@ Kategori: ${category.name}
                     {product.description}
                   </p>
 
-                  <div className="flex items-center space-x-4">
-                    {product.inStock ? (
-                      <Badge variant="default" className="bg-green-100 text-green-800 px-3 py-1">
-                        ✓ Stokta Var
-                      </Badge>
-                    ) : (
-                      <Badge variant="destructive" className="px-3 py-1">
-                        ✗ Stokta Yok
-                      </Badge>
-                    )}
-                    <div className="flex items-center space-x-1">
-                      {[1,2,3,4,5].map(i => (
-                        <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                      ))}
-                      <span className="text-sm text-gray-600 ml-2">(4.8/5 - 124 değerlendirme)</span>
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-3">
+                      {product.inStock ? (
+                        <Badge variant="default" className="bg-green-100 text-green-800 px-3 py-1 font-semibold">
+                          ✓ Stokta Var
+                        </Badge>
+                      ) : (
+                        <Badge variant="destructive" className="px-3 py-1">
+                          ✗ Stokta Yok
+                        </Badge>
+                      )}
+                      {isExclusive && (
+                        <Badge className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-1 font-semibold">
+                          <Crown className="h-3 w-3 mr-1" />
+                          Premium Ürün
+                        </Badge>
+                      )}
+                      <div className="flex items-center space-x-1">
+                        {[1,2,3,4,5].map(i => (
+                          <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                        ))}
+                        <span className="text-sm text-gray-600 ml-2">(4.8/5 - 124 değerlendirme)</span>
+                      </div>
                     </div>
+                    
+                    {/* Scarcity Indicators */}
+                    <ScarcityIndicator 
+                      productId={product.id} 
+                      showViewers={true}
+                      showStock={product.inStock}
+                      showRecentSales={true}
+                      showTrending={true}
+                    />
                   </div>
                 </div>
 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    size="lg" 
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-4"
-                    asChild
-                  >
-                    <Link href={`https://wa.me/905551234567?text=${encodeURIComponent(whatsappMessage)}`} target="_blank">
-                      <MessageCircle className="mr-2 h-5 w-5" />
-                      WhatsApp ile Sipariş Ver
-                    </Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="font-semibold py-4" asChild>
-                    <Link href="/appointment">
-                      <Phone className="mr-2 h-5 w-5" />
-                      Uzman Danışmanlığı
-                    </Link>
-                  </Button>
+                {/* Mobile-First WhatsApp Order System */}
+                <div className="space-y-6">
+                  {/* Mobile-optimized component for small screens */}
+                  <div className="block md:hidden">
+                    <MobileWhatsAppOrder 
+                      productName={product.name}
+                      productCategory={category.name}
+                      urgent={isUrgent}
+                      premium={isExclusive}
+                      inStock={product.inStock}
+                    />
+                  </div>
+                  
+                  {/* Desktop component for larger screens */}
+                  <div className="hidden md:block">
+                    <WhatsAppOrder 
+                      productName={product.name}
+                      productCategory={category.name}
+                      urgent={isUrgent}
+                      premium={isExclusive}
+                    />
+                  </div>
                 </div>
 
-                {/* Trust Indicators */}
-                <div className="grid grid-cols-3 gap-6 pt-6 border-t">
-                  <div className="text-center">
+                {/* Enhanced Trust Indicators */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t">
+                  <div className="text-center p-3 bg-green-50 rounded-lg">
                     <Shield className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Güvenli Ödeme</p>
+                    <p className="text-sm font-medium text-green-800">%100 Güvenli</p>
+                    <p className="text-xs text-green-600">SSL Korumalı</p>
                   </div>
-                  <div className="text-center">
-                    <Sparkles className="h-8 w-8 text-[#0170B9] mx-auto mb-2" />
-                    <p className="text-sm font-medium">Orijinal Ürün</p>
+                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <Sparkles className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                    <p className="text-sm font-medium text-blue-800">Orijinal Ürün</p>
+                    <p className="text-xs text-blue-600">İsviçre Kalitesi</p>
                   </div>
-                  <div className="text-center">
-                    <Star className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Uzman Desteği</p>
+                  <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                    <Star className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
+                    <p className="text-sm font-medium text-yellow-800">Uzman Desteği</p>
+                    <p className="text-xs text-yellow-600">7/24 Hizmet</p>
+                  </div>
+                  <div className="text-center p-3 bg-purple-50 rounded-lg">
+                    <Zap className="h-8 w-8 text-purple-600 mx-auto mb-2" />
+                    <p className="text-sm font-medium text-purple-800">Hızlı Teslimat</p>
+                    <p className="text-xs text-purple-600">1-3 İş Günü</p>
                   </div>
                 </div>
               </div>
@@ -295,6 +437,7 @@ Kategori: ${category.name}
           </div>
         </section>
       )}
-    </div>
+      </div>
+    </>
   );
 }
