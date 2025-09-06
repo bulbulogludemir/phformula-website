@@ -1,290 +1,245 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Star, Shield, Sparkles, Heart, Share2, Crown, Zap } from "lucide-react";
-import { ScarcityIndicator, LiveActivity } from "@/components/psychology/ScarcityIndicator";
-import { WhatsAppOrder, QuickWhatsApp } from "@/components/psychology/WhatsAppOrder";
-import { MobileWhatsAppOrder, MobileStickyWhatsApp } from "@/components/mobile/MobileWhatsAppOrder";
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { 
+  ArrowLeft, 
+  MessageCircle, 
+  Heart, 
+  Share2, 
+  Eye, 
+  ShoppingCart,
+  Star,
+  Calendar,
+  Info,
+  Package,
+  Sparkles
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Product, ProductCategory, getAllProducts, getProductImageUrl } from '@/lib/products'
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  inStock: boolean;
-  benefits?: string[];
-  usage?: string;
-  ingredients?: string[];
-  category: {
-    id: string;
-    name: string;
-  };
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-interface Breadcrumb {
-  name: string;
-  url: string;
-}
-
-interface ProductPageClientProps {
+interface ProductDetailProps {
   product: Product;
-  category: Category;
+  category: ProductCategory;
   relatedProducts: Product[];
-  breadcrumbs: Breadcrumb[];
+  breadcrumbs: Array<{ name: string; url: string }>;
 }
 
-export function ProductPageClient({ product, category, relatedProducts }: ProductPageClientProps) {
-  const [isExclusive] = useState(Math.random() > 0.5);
-  const [isUrgent] = useState(Math.random() > 0.7);
+export function ProductPageClient({ product, category, relatedProducts, breadcrumbs }: ProductDetailProps) {
+  // WhatsApp mesajı oluştur
+  const getWhatsAppMessage = () => {
+    return encodeURIComponent(
+      `Merhaba phFormula! "${product.name}" ürünü hakkında detaylı bilgi almak istiyorum. Fiyat, stok durumu ve kullanım şekli hakkında bilgi verebilir misiniz?`
+    )
+  }
+
+  const handleWhatsAppContact = () => {
+    const whatsappUrl = `https://wa.me/905358726752?text=${getWhatsAppMessage()}`
+    window.open(whatsappUrl, '_blank')
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.meta_description || product.description,
+        url: window.location.href,
+      })
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      // Toast notification can be added here
+    }
+  }
 
   return (
-    <>
-      <LiveActivity />
-      {/* Responsive WhatsApp Buttons */}
-      <div className="block md:hidden">
-        <MobileStickyWhatsApp />
-      </div>
-      <div className="hidden md:block">
-        <QuickWhatsApp />
-      </div>
-      <div className="min-h-screen" itemScope itemType="https://schema.org/Product">
-        {/* Breadcrumb */}
-        <section className="bg-gray-50 py-4">
-          <div className="container mx-auto px-4">
-            <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-gray-500 hover:text-[#0170B9]">Ana Sayfa</Link>
-              <span className="text-gray-400">/</span>
-              <Link href="/products" className="text-gray-500 hover:text-[#0170B9]">Ürünler</Link>
-              <span className="text-gray-400">/</span>
-              <Link href={`/products/${category.id}`} className="text-gray-500 hover:text-[#0170B9]">{category.name}</Link>
-              <span className="text-gray-400">/</span>
-              <span className="text-[#0170B9] font-medium line-clamp-1">{product.name}</span>
-            </nav>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-8 sm:py-16 px-4 sm:px-6 bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Navigation */}
+          <div className="flex items-center gap-2 mb-6 text-white/80">
+            <Link 
+              href="/products" 
+              className="flex items-center gap-2 hover:text-white transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span className="text-sm">Ürünlere Dön</span>
+            </Link>
+            <span className="text-white/60">•</span>
+            <Link href={`/products/${category.id}`} className="text-sm hover:text-white transition-colors">
+              {category.name}
+            </Link>
+            <span className="text-white/60">•</span>
+            <span className="text-sm text-white/90">{product.name}</span>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Product Details */}
-        <section className="py-12 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <Button variant="outline" size="sm" className="mb-8" asChild>
-                <Link href={`/products/${category.id}`}>
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {category.name} Kategorisine Dön
-                </Link>
-              </Button>
-
-              <div className="grid lg:grid-cols-2 gap-12">
-                {/* Product Image Placeholder */}
-                <div className="space-y-6">
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center group hover:from-blue-50 hover:to-blue-100 transition-all duration-300">
-                    <div className="text-center space-y-4">
-                      <Sparkles className="h-16 w-16 text-gray-400 group-hover:text-[#0170B9] transition-colors mx-auto" />
-                      <div className="space-y-2">
-                        <h3 className="text-2xl font-bold text-gray-600 group-hover:text-[#0170B9] transition-colors">
-                          {product.name}
-                        </h3>
-                        <p className="text-gray-500">Ürün Görseli</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-4 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                        <Sparkles className="h-6 w-6 text-gray-400" />
-                      </div>
-                    ))}
-                  </div>
+      {/* Product Details */}
+      <section className="py-12 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+            
+            {/* Product Images */}
+            <div className="space-y-4">
+              {/* Main Image */}
+              <div className="relative aspect-square overflow-hidden rounded-2xl shadow-xl bg-gray-100">
+                <Image
+                  src={getProductImageUrl(product.product_id, 0)}
+                  alt={product.name}
+                  fill
+                  className="object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement
+                    target.src = '/images/placeholder.svg'
+                  }}
+                />
+                
+                {/* Action buttons */}
+                <div className="absolute top-4 right-4 flex flex-col gap-2">
+                  <button className="p-3 rounded-full bg-white/80 text-gray-600 hover:text-red-500 backdrop-blur-xl transition-colors">
+                    <Heart className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={handleShare}
+                    className="p-3 rounded-full bg-white/80 text-gray-600 hover:text-blue-600 backdrop-blur-xl transition-colors"
+                  >
+                    <Share2 className="w-5 h-5" />
+                  </button>
                 </div>
 
-                {/* Product Information */}
-                <div className="space-y-8">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="text-[#0170B9] bg-blue-50">
-                        {category.name}
-                      </Badge>
-                      <div className="flex space-x-2">
-                        <Button size="sm" variant="outline">
-                          <Heart className="h-4 w-4" />
-                        </Button>
-                        <Button size="sm" variant="outline">
-                          <Share2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
-                      {product.name}
-                    </h1>
-                    
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                      {product.description}
-                    </p>
-
-                    <div className="space-y-4">
-                      <div className="flex flex-wrap items-center gap-3">
-                        {product.inStock ? (
-                          <Badge variant="default" className="bg-green-100 text-green-800 px-3 py-1 font-semibold">
-                            ✓ Stokta Var
-                          </Badge>
-                        ) : (
-                          <Badge variant="destructive" className="px-3 py-1">
-                            ✗ Stokta Yok
-                          </Badge>
-                        )}
-                        {isExclusive && (
-                          <Badge className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-1 font-semibold">
-                            <Crown className="h-3 w-3 mr-1" />
-                            Premium Ürün
-                          </Badge>
-                        )}
-                        <div className="flex items-center space-x-1">
-                          {[1,2,3,4,5].map(i => (
-                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                          ))}
-                          <span className="text-sm text-gray-600 ml-2">(4.8/5 - 124 değerlendirme)</span>
-                        </div>
-                      </div>
-                      
-                      {/* Scarcity Indicators */}
-                      <ScarcityIndicator 
-                        productId={product.id} 
-                        showViewers={true}
-                        showStock={product.inStock}
-                        showRecentSales={true}
-                        showTrending={true}
-                      />
-                    </div>
+                {/* Size badge */}
+                {product.size && (
+                  <div className="absolute bottom-4 left-4">
+                    <Badge className="bg-black/70 text-white border-0">
+                      {product.size}
+                    </Badge>
                   </div>
-
-                  {/* Mobile-First WhatsApp Order System */}
-                  <div className="space-y-6">
-                    {/* Mobile-optimized component for small screens */}
-                    <div className="block md:hidden">
-                      <MobileWhatsAppOrder 
-                        productName={product.name}
-                        productCategory={category.name}
-                        urgent={isUrgent}
-                        premium={isExclusive}
-                        inStock={product.inStock}
-                      />
-                    </div>
-                    
-                    {/* Desktop component for larger screens */}
-                    <div className="hidden md:block">
-                      <WhatsAppOrder 
-                        productName={product.name}
-                        productCategory={category.name}
-                        urgent={isUrgent}
-                        premium={isExclusive}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Enhanced Trust Indicators */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t">
-                    <div className="text-center p-3 bg-green-50 rounded-lg">
-                      <Shield className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                      <p className="text-sm font-medium text-green-800">%100 Güvenli</p>
-                      <p className="text-xs text-green-600">SSL Korumalı</p>
-                    </div>
-                    <div className="text-center p-3 bg-blue-50 rounded-lg">
-                      <Sparkles className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                      <p className="text-sm font-medium text-blue-800">Orijinal Ürün</p>
-                      <p className="text-xs text-blue-600">İspanya Kalitesi</p>
-                    </div>
-                    <div className="text-center p-3 bg-yellow-50 rounded-lg">
-                      <Star className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-                      <p className="text-sm font-medium text-yellow-800">Uzman Desteği</p>
-                      <p className="text-xs text-yellow-600">7/24 Hizmet</p>
-                    </div>
-                    <div className="text-center p-3 bg-purple-50 rounded-lg">
-                      <Zap className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                      <p className="text-sm font-medium text-purple-800">Hızlı Teslimat</p>
-                      <p className="text-xs text-purple-600">1-3 İş Günü</p>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Product Details Sections */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Benefits */}
-                {product.benefits && product.benefits.length > 0 && (
-                  <Card className="border-0 shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="flex items-center text-xl">
-                        <Sparkles className="mr-3 h-6 w-6 text-[#0170B9]" />
-                        Ana Faydaları
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3">
-                        {product.benefits.map((benefit, index) => (
-                          <li key={index} className="flex items-start">
-                            <div className="w-2 h-2 bg-[#0170B9] rounded-full mr-3 mt-2 flex-shrink-0" />
-                            <span className="text-gray-700 leading-relaxed">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
+            {/* Product Info */}
+            <div className="space-y-6">
+              {/* Product Header */}
+              <div>
+                {product.brand && (
+                  <p className="text-sm text-gray-600 mb-2">{product.brand}</p>
                 )}
-
-                {/* Usage Instructions */}
-                {product.usage && (
-                  <Card className="border-0 shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="flex items-center text-xl">
-                        <Star className="mr-3 h-6 w-6 text-green-600" />
-                        Kullanım Talimatları
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-700 leading-relaxed bg-green-50 p-4 rounded-lg">
-                        {product.usage}
-                      </p>
-                      <div className="mt-4 p-4 bg-yellow-50 rounded-lg">
-                        <p className="text-sm text-yellow-800 font-medium">
-                          ⚠️ Önemli: İlk kullanımdan önce uzman görüşü alınması önerilir.
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+                  {product.name}
+                </h1>
+                
+                {/* Rating */}
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">(phFormula Onaylı)</span>
+                </div>
               </div>
 
-              {/* Ingredients */}
-              {product.ingredients && product.ingredients.length > 0 && (
-                <Card className="mt-8 border-0 shadow-lg">
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  onClick={handleWhatsAppContact}
+                  size="lg"
+                  className="flex-1 bg-green-600 hover:bg-green-700 text-white border-0"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  WhatsApp ile İletişim
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleWhatsAppContact}
+                  className="border-gray-300 hover:bg-gray-50"
+                >
+                  <Info className="mr-2 h-4 w-4" />
+                  Fiyat Al
+                </Button>
+              </div>
+
+              {/* Product Description */}
+              {product.description && (
+                <Card className="shadow-lg">
                   <CardHeader>
-                    <CardTitle className="flex items-center text-xl">
-                      <Shield className="mr-3 h-6 w-6 text-purple-600" />
-                      İçindeki Aktif Bileşenler
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Package className="w-5 h-5 text-blue-600" />
+                      Ürün Açıklaması
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                      {product.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Product Features */}
+              {product.features && product.features.length > 0 && (
+                <Card className="shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Sparkles className="w-5 h-5 text-purple-600" />
+                      Özellikler
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {product.features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-2 text-sm">
+                          <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0" />
+                          <span className="text-gray-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Usage Instructions */}
+              {product.usage_instructions && (
+                <Card className="shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Info className="w-5 h-5 text-green-600" />
+                      Kullanım Talimatları
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 leading-relaxed text-sm">
+                      {product.usage_instructions}
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Ingredients */}
+              {product.ingredients && product.ingredients.length > 0 && (
+                <Card className="shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Eye className="w-5 h-5 text-orange-600" />
+                      İçerik
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
                       {product.ingredients.map((ingredient, index) => (
-                        <div key={index} className="bg-purple-50 rounded-lg p-3 text-center">
-                          <span className="text-sm font-medium text-purple-900">{ingredient}</span>
-                        </div>
+                        <Badge key={index} variant="secondary" className="text-xs">
+                          {ingredient}
+                        </Badge>
                       ))}
                     </div>
                   </CardContent>
@@ -292,60 +247,98 @@ export function ProductPageClient({ product, category, relatedProducts }: Produc
               )}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <section className="py-16 bg-white">
-            <div className="container mx-auto px-4">
-              <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    İlgili Ürünler
-                  </h2>
-                  <p className="text-lg text-gray-600">
-                    {category.name} kategorisindeki diğer ürünler
-                  </p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                  {relatedProducts.map((relatedProduct) => (
-                    <Card key={relatedProduct.id} className="group hover:shadow-lg transition-shadow">
-                      <CardHeader>
-                        <div className="flex justify-between items-start mb-2">
-                          <Badge variant="secondary" className="text-[#0170B9] bg-blue-50">
-                            {relatedProduct.category.name}
-                          </Badge>
-                          {relatedProduct.inStock && (
-                            <Badge variant="default" className="bg-green-100 text-green-800">
-                              Stokta
-                            </Badge>
-                          )}
-                        </div>
-                        <CardTitle className="text-lg line-clamp-2 group-hover:text-[#0170B9] transition-colors">
-                          {relatedProduct.name}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="line-clamp-3">
-                          {relatedProduct.description}
-                        </CardDescription>
-                      </CardContent>
-                      <div className="px-6 pb-6">
-                        <Button variant="outline" className="w-full" asChild>
-                          <Link href={`/products/${relatedProduct.category.id}/${relatedProduct.id}`}>
-                            Ürünü İncele
-                          </Link>
-                        </Button>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+      {/* Related Products */}
+      {relatedProducts.length > 0 && (
+        <section className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Benzer Ürünler</h2>
+              <p className="text-gray-600">Size önerebileceğimiz diğer ürünler</p>
             </div>
-          </section>
-        )}
-      </div>
-    </>
-  );
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedProducts.map((relatedProduct) => (
+                <Card key={relatedProduct.product_id} className="shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Link href={`/products/${category.id}/${relatedProduct.product_id}`}>
+                      <Image
+                        src={getProductImageUrl(relatedProduct.product_id, 0)}
+                        alt={relatedProduct.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          target.src = '/images/placeholder.svg'
+                        }}
+                      />
+                    </Link>
+                  </div>
+                  <CardContent className="p-3">
+                    <Link href={`/products/${category.id}/${relatedProduct.product_id}`}>
+                      <h3 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors line-clamp-2 mb-1 text-sm">
+                        {relatedProduct.name}
+                      </h3>
+                    </Link>
+                    {relatedProduct.size && (
+                      <p className="text-xs text-gray-500 mb-2">
+                        {relatedProduct.size}
+                      </p>
+                    )}
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="w-full text-xs h-8"
+                      asChild
+                    >
+                      <Link href={`/products/${category.id}/${relatedProduct.product_id}`}>
+                        İncele
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 bg-gradient-to-br from-green-600 via-green-700 to-green-800">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Hemen İletişime Geçin
+            </h2>
+            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+              {product.name} hakkında detaylı bilgi almak ve fiyat öğrenmek için bizimle iletişime geçin
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                onClick={handleWhatsAppContact}
+                className="bg-white text-green-700 hover:bg-gray-100"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" />
+                WhatsApp ile Yaz
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-green-700"
+                asChild
+              >
+                <Link href="/products">
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Diğer Ürünler
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
