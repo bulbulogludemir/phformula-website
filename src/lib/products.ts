@@ -69,17 +69,13 @@ export const searchProducts = (query: string): Product[] => {
 
 // Generate product image URL
 export const getProductImageUrl = (productId: string, imageIndex: number = 0): string => {
-  // Check which image formats exist and prioritize actual product images
-  const extensions = ['png', 'jpg', 'jpeg', 'webp']
-  
+  // Use main.jpg format from NKGuzellik project
   if (imageIndex === 0) {
-    // Try main image first, then fall back to numbered images
-    // Skip -1 and -2 as they are logos, start from -3
-    return `/images/${productId}-1.png`
+    return `/images/${productId}-main.jpg`
   }
   
-  // Additional images
-  return `/images/${productId}-${imageIndex + 1}.png`
+  // Additional images (if needed)
+  return `/images/${productId}-${imageIndex}.jpg`
 }
 
 // Get all available images for a product
