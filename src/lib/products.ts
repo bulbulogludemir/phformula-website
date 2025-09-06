@@ -47,7 +47,7 @@ export const getProductsByCategory = (category: string): Product[] => {
   }
   
   return productsData.products.filter(p => {
-    const name = p.name.toLowerCase()
+    const name = p.name?.toLowerCase() || ''
     const description = p.description?.toLowerCase() || ''
     const categoryLower = category.toLowerCase()
     
@@ -61,7 +61,7 @@ export const searchProducts = (query: string): Product[] => {
   if (!searchTerm) return getAllProducts()
   
   return productsData.products.filter(p => 
-    p.name.toLowerCase().includes(searchTerm) ||
+    p.name?.toLowerCase().includes(searchTerm) ||
     p.description?.toLowerCase().includes(searchTerm) ||
     p.size?.toLowerCase().includes(searchTerm)
   ) as Product[]
@@ -113,7 +113,7 @@ export const getCategories = (): ProductCategory[] => {
   const categoryMap = new Map<string, number>()
   
   productsData.products.forEach(product => {
-    const name = product.name.toLowerCase()
+    const name = product.name?.toLowerCase() || ''
     const description = product.description?.toLowerCase() || ''
     
     // Categorize based on phFormula product lines and types
@@ -160,8 +160,8 @@ export const getCategories = (): ProductCategory[] => {
   
   return Array.from(categoryMap.entries()).map(([name, count]) => ({
     id: name.replace(/\s+/g, '-').toLowerCase(),
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    description: getCategoryDescription(name),
+    name: name ? name.charAt(0).toUpperCase() + name.slice(1) : '',
+    description: getCategoryDescription(name || ''),
     count
   })).sort((a, b) => b.count - a.count) // Sort by count descending
 }
@@ -194,7 +194,7 @@ export const getSizes = (): string[] => {
     }
     
     // Extract size from product name
-    const sizeMatch = product.name.match(/(\d+(?:[.,]\d+)?\s*(?:ml|gr|g|mg))/i)
+    const sizeMatch = product.name?.match(/(\d+(?:[.,]\d+)?\s*(?:ml|gr|g|mg))/i)
     if (sizeMatch) {
       sizes.add(sizeMatch[1])
     }

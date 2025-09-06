@@ -46,7 +46,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
             <span className="text-gray-600">/</span>
             <Link href="/products" className="text-gray-400 hover:text-white transition-colors">Ürünler</Link>
             <span className="text-gray-600">/</span>
-            <span className="text-white font-bold">{category.name.toUpperCase()}</span>
+            <span className="text-white font-bold">{category.name?.toUpperCase() || ''}</span>
           </nav>
         </div>
       </section>
@@ -70,7 +70,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {categoryProducts.length} ÜRÜN MEVCUT
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight">
-                  <span className="text-white">{category.name.toUpperCase()}</span>
+                  <span className="text-white">{category.name?.toUpperCase() || ''}</span>
                 </h1>
                 <p className="text-xl text-gray-300 leading-relaxed font-light">
                   {category.description}
@@ -244,7 +244,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   ÖZEL KOLEKSİYON
                 </Badge>
                 <h2 className="text-4xl md:text-6xl font-black text-black mb-6 tracking-tight">
-                  {category.name.toUpperCase()} ÜRÜNLERİ
+                  {category.name?.toUpperCase() || ''} ÜRÜNLERİ
                 </h2>
                 <p className="text-xl text-gray-600 font-light leading-relaxed">
                   {categoryProducts.length} adet premium ürün - İsviçre teknolojisi ile üretildi
@@ -278,7 +278,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       
                       <div className="flex justify-between items-start mb-3">
                         <Badge variant="secondary" className="text-white bg-black font-bold tracking-wider border-0">
-                          {category.name.toUpperCase()}
+                          {category.name?.toUpperCase() || ''}
                         </Badge>
                         {product.inStock ? (
                           <Badge variant="default" className="bg-green-600 text-white font-bold border-0">

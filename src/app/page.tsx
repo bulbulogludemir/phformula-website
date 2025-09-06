@@ -211,7 +211,7 @@ export default function Home() {
                 <CardHeader className="relative">
                   <div className="flex justify-between items-start mb-4">
                     <Badge variant="secondary" className="text-white bg-black border-0 font-bold tracking-wider z-10 relative">
-                      {product.category.name.toUpperCase()}
+                      {product.category?.name?.toUpperCase() || ''}
                     </Badge>
                     <div className="flex items-center space-x-2 z-10 relative">
                       {product.inStock ? (
@@ -229,7 +229,7 @@ export default function Home() {
                     </div>
                   </div>
                   <CardTitle className="text-xl font-black line-clamp-2 text-black group-hover:text-black transition-colors tracking-tight relative z-10">
-                    {product.name.toUpperCase()}
+                    {product.name?.toUpperCase() || ''}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
