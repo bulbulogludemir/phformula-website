@@ -196,7 +196,7 @@ export default function ProductsPage() {
                 phFormula Ürünleri
               </h1>
               <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
-                İsviçre teknolojisi ile üretilen profesyonel cilt bakım ürünlerini keşfedin
+                İspanya teknolojisi ile üretilen profesyonel cilt bakım ürünlerini keşfedin
               </p>
             </div>
 

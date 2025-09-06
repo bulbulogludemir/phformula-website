@@ -16,7 +16,7 @@ export function Footer() {
               <Badge variant="secondary" className="bg-black text-white text-xs font-bold tracking-wider border-0">MAĞAZA</Badge>
             </div>
             <p className="text-base text-gray-700 max-w-xs font-light leading-relaxed">
-              Türkiye'nin en güvendiği online cilt bakım mağazası. İsviçre kalitesinde ürünler, hızlı teslimat.
+              Türkiye'nin en güvendiği online cilt bakım mağazası. İspanya kalitesinde ürünler, hızlı teslimat.
             </p>
             <div className="flex space-x-4">
               <Link

@@ -22,7 +22,7 @@ const robotoMono = Roboto_Mono({
 export const metadata: Metadata = {
   title: generateTurkishSEOTitle("phFormula Türkiye", undefined, true),
   description: generateTurkishSEODescription(
-    "Türkiye'nin #1 phFormula distribütörü. İsviçre kalitesinde orijinal cilt bakım ürünleri, profesyonel dermokozmetik çözümler.",
+    "Türkiye'nin #1 phFormula distribütörü. İspanya kalitesinde orijinal cilt bakım ürünleri, profesyonel dermokozmetik çözümler.",
     "Premium cilt bakım",
     true
   ),

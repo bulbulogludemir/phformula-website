@@ -14,7 +14,7 @@ export function OrganizationSchema() {
     "@type": "Organization",
     "name": "phFormula Türkiye",
     "alternateName": ["phFormula Turkey", "phFormula TR"],
-    "description": "Türkiye'nin önde gelen profesyonel cilt bakım ürünleri e-ticaret mağazası. İsviçre kalitesinde orijinal phFormula ürünleri.",
+    "description": "Türkiye'nin önde gelen profesyonel cilt bakım ürünleri e-ticaret mağazası. İspanya kalitesinde orijinal phFormula ürünleri.",
     "url": "https://phformula.com.tr",
     "logo": "https://phformula.com.tr/logo.webp",
     "image": "https://phformula.com.tr/og-image.webp",
@@ -55,13 +55,13 @@ export function OrganizationSchema() {
       "@type": "QuantitativeValue",
       "value": "10-50"
     },
-    "slogan": "Premium Cilt Bakım Ürünleri - İsviçre Kalitesi",
+    "slogan": "Premium Cilt Bakım Ürünleri - İspanya Kalitesi",
     "award": ["Türkiye'nin En Güvenilir Online Kozmetik Mağazası"],
     "brand": {
       "@type": "Brand",
       "name": "phFormula",
       "logo": "https://phformula.com.tr/logo.webp",
-      "description": "Professional skincare products from Switzerland"
+      "description": "Professional skincare products from Spain"
     },
     "sameAs": [
       "https://www.instagram.com/phformula_turkiye",
@@ -325,7 +325,7 @@ export function ProductSchema({ product, category }: { product: Product; categor
       {
         "@type": "PropertyValue",
         "name": "Menşei",
-        "value": "İsviçre"
+        "value": "İspanya"
       },
       {
         "@type": "PropertyValue", 

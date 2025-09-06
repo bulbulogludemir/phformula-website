@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { category: string 
   
   return {
     title: generateTurkishSEOTitle(category.name, `phFormula ${category.name} - Premium Cilt Bakım Ürünleri`),
-    description: `${category.description} phFormula ${category.name} ürünlerini keşfedin. İsviçre kalitesi, orijinal ürünler, hızlı kargo. WhatsApp'tan hemen sipariş verin.`,
+    description: `${category.description} phFormula ${category.name} ürünlerini keşfedin. İspanya kalitesi, orijinal ürünler, hızlı kargo. WhatsApp'tan hemen sipariş verin.`,
   };
 }
 
@@ -247,7 +247,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                   {category.name?.toUpperCase() || ''} ÜRÜNLERİ
                 </h2>
                 <p className="text-xl text-gray-600 font-light leading-relaxed">
-                  {categoryProducts.length} adet premium ürün - İsviçre teknolojisi ile üretildi
+                  {categoryProducts.length} adet premium ürün - İspanya teknolojisi ile üretildi
                 </p>
                 
                 {/* Urgency Banner */}

@@ -48,7 +48,7 @@ export default function Home() {
                   <span className="text-2xl md:text-4xl font-light tracking-widest uppercase text-gray-400">Mağaza</span>
                 </h1>
                 <p className="text-xl text-gray-300 leading-relaxed font-light">
-                  Profesyonel cilt bakım ürünleri online. İsviçre kalitesinde formüller, hızlı kargo, güvenli alışveriş.
+                  Profesyonel cilt bakım ürünleri online. İspanya kalitesinde formüller, hızlı kargo, güvenli alışveriş.
                 </p>
               </div>
               

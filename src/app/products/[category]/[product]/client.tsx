@@ -201,7 +201,7 @@ export function ProductPageClient({ product, category, relatedProducts }: Produc
                     <div className="text-center p-3 bg-blue-50 rounded-lg">
                       <Sparkles className="h-8 w-8 text-blue-600 mx-auto mb-2" />
                       <p className="text-sm font-medium text-blue-800">Orijinal Ürün</p>
-                      <p className="text-xs text-blue-600">İsviçre Kalitesi</p>
+                      <p className="text-xs text-blue-600">İspanya Kalitesi</p>
                     </div>
                     <div className="text-center p-3 bg-yellow-50 rounded-lg">
                       <Star className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
