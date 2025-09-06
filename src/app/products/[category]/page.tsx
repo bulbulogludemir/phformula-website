@@ -262,7 +262,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categoryProducts.map((product, index) => (
-                  <Card key={product.product_id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden">
+                  <Link key={product.product_id} href={`/products/${category.id}/${product.product_id}`} className="block">
+                    <Card className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden cursor-pointer">
                     <CardHeader className="pb-4 relative">
                       {/* Popular/New badges */}
                       {index === 0 && (
@@ -348,7 +349,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       </div>
                     </CardContent>
 
-                    <CardFooter className="flex gap-3 pt-0 relative z-10">
+                    <CardFooter className="flex gap-3 pt-0 relative z-10" onClick={(e) => e.stopPropagation()}>
                       <Button variant="outline" className="flex-1 border-2 border-black text-black hover:bg-black hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
                         <Link href={`/products/${category.id}/${product.product_id}`}>
                           DETAYLI İNCELE
@@ -369,6 +370,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       </Button>
                     </CardFooter>
                   </Card>
+                  </Link>
                 ))}
               </div>
             </>

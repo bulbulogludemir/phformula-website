@@ -221,9 +221,9 @@ export function ProductSchema({ product, category }: { product: Product; categor
     "gtin": `phf${product.product_id}`,
     "mpn": product.product_id.toUpperCase(),
     "image": [
-      `https://phformula.com.tr/images/${product.product_id}-1.png`,
-      `https://phformula.com.tr/images/${product.product_id}-2.png`,
-      `https://phformula.com.tr/images/${product.product_id}-3.png`
+      `https://phformula.com.tr/images/${product.product_id}-3.png`,
+      `https://phformula.com.tr/images/${product.product_id}-4.png`,
+      `https://phformula.com.tr/images/${product.product_id}-5.png`
     ],
     "url": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
     "mainEntityOfPage": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,

@@ -37,94 +37,98 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
 
   if (viewMode === 'list') {
     return (
-      <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
-          <div className="relative w-full h-full">
-            <Image
-              src={imageError ? fallbackImageUrl : mainImageUrl}
-              alt={product.name}
-              fill
-              className="object-cover"
-              onError={handleImageError}
-            />
-            {product.size && (
-              <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
-                {product.size}
-              </Badge>
-            )}
-          </div>
-        </div>
-        <CardContent className="flex-1 p-4 sm:p-6">
-          <div className="space-y-3">
-            <div>
-              <h3 className="font-bold text-lg text-black line-clamp-2">
-                {product.name}
-              </h3>
-              <p className="text-sm text-gray-600 mt-1">{product.size}</p>
-            </div>
-            <p className="text-sm text-gray-700 line-clamp-3">{excerpt}</p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <Button size="sm" variant="outline" asChild className="flex-1">
-                <Link href={`/products/all/${product.product_id}`}>
-                  <Eye className="mr-2 h-4 w-4" />
-                  İncele
-                </Link>
-              </Button>
-              <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700" asChild>
-                <Link href={whatsappUrl} target="_blank">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  WhatsApp
-                </Link>
-              </Button>
+      <Link href={`/products/all/${product.product_id}`} className="block">
+        <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+          <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
+            <div className="relative w-full h-full">
+              <Image
+                src={imageError ? fallbackImageUrl : mainImageUrl}
+                alt={product.name}
+                fill
+                className="object-cover"
+                onError={handleImageError}
+              />
+              {product.size && (
+                <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
+                  {product.size}
+                </Badge>
+              )}
             </div>
           </div>
-        </CardContent>
-      </Card>
+          <CardContent className="flex-1 p-4 sm:p-6">
+            <div className="space-y-3">
+              <div>
+                <h3 className="font-bold text-lg text-black line-clamp-2">
+                  {product.name}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">{product.size}</p>
+              </div>
+              <p className="text-sm text-gray-700 line-clamp-3">{excerpt}</p>
+              <div className="flex flex-col sm:flex-row gap-2" onClick={(e) => e.stopPropagation()}>
+                <Button size="sm" variant="outline" asChild className="flex-1">
+                  <Link href={`/products/all/${product.product_id}`}>
+                    <Eye className="mr-2 h-4 w-4" />
+                    İncele
+                  </Link>
+                </Button>
+                <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700" asChild>
+                  <Link href={whatsappUrl} target="_blank">
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    WhatsApp
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
     )
   }
 
   return (
-    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300">
-      <div className="relative aspect-square overflow-hidden">
-        <Image
-          src={imageError ? fallbackImageUrl : mainImageUrl}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          onError={handleImageError}
-        />
-        {product.size && (
-          <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
-            {product.size}
-          </Badge>
-        )}
-      </div>
-      <CardContent className="p-4">
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-bold text-sm text-black line-clamp-2 leading-tight">
-              {product.name}
-            </h3>
-          </div>
-          <p className="text-xs text-gray-600 line-clamp-2">{excerpt}</p>
-          <div className="flex gap-1">
-            <Button size="sm" variant="outline" className="flex-1 text-xs h-8" asChild>
-              <Link href={`/products/all/${product.product_id}`}>
-                <Eye className="mr-1 h-3 w-3" />
-                İncele
-              </Link>
-            </Button>
-            <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-8" asChild>
-              <Link href={whatsappUrl} target="_blank">
-                <MessageCircle className="mr-1 h-3 w-3" />
-                WhatsApp
-              </Link>
-            </Button>
-          </div>
+    <Link href={`/products/all/${product.product_id}`} className="block">
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
+        <div className="relative aspect-square overflow-hidden">
+          <Image
+            src={imageError ? fallbackImageUrl : mainImageUrl}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            onError={handleImageError}
+          />
+          {product.size && (
+            <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
+              {product.size}
+            </Badge>
+          )}
         </div>
-      </CardContent>
-    </Card>
-  )
+        <CardContent className="p-4">
+          <div className="space-y-3">
+            <div>
+              <h3 className="font-bold text-sm text-black line-clamp-2 leading-tight">
+                {product.name}
+              </h3>
+            </div>
+            <p className="text-xs text-gray-600 line-clamp-2">{excerpt}</p>
+            <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
+              <Button size="sm" variant="outline" className="flex-1 text-xs h-8" asChild>
+                <Link href={`/products/all/${product.product_id}`}>
+                  <Eye className="mr-1 h-3 w-3" />
+                  İncele
+                </Link>
+              </Button>
+              <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-8" asChild>
+                <Link href={whatsappUrl} target="_blank">
+                  <MessageCircle className="mr-1 h-3 w-3" />
+                    WhatsApp
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
+    )
 }
 
 export default function ProductsPage() {

@@ -207,22 +207,17 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
-              <Card key={product.id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden">
+              <Link key={product.product_id} href={`/products/all/${product.product_id}`} className="block">
+                <Card className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden cursor-pointer">
                 <CardHeader className="relative">
                   <div className="flex justify-between items-start mb-4">
                     <Badge variant="secondary" className="text-white bg-black border-0 font-bold tracking-wider z-10 relative">
-                      {product.category?.name?.toUpperCase() || ''}
+                      {product.category?.toUpperCase() || ''}
                     </Badge>
                     <div className="flex items-center space-x-2 z-10 relative">
-                      {product.inStock ? (
-                        <Badge variant="default" className="bg-green-600 text-white font-bold border-0">
-                          STOKTA
-                        </Badge>
-                      ) : (
-                        <Badge variant="destructive" className="bg-red-600 text-white font-bold border-0">
-                          TÜKENDİ
-                        </Badge>
-                      )}
+                      <Badge variant="default" className="bg-green-600 text-white font-bold border-0">
+                        STOKTA
+                      </Badge>
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gray-600 hover:bg-red-500 hover:text-white transition-all duration-300 rounded-full">
                         <Heart className="h-4 w-4" />
                       </Button>
@@ -258,18 +253,19 @@ export default function Home() {
                     </div>
                   )}
                 </CardContent>
-                <CardFooter className="flex gap-3 relative z-10">
+                <CardFooter className="flex gap-3 relative z-10" onClick={(e) => e.stopPropagation()}>
                   <Button variant="outline" className="flex-1 border-2 border-black text-black hover:bg-black hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
                     <Link href={`/products/all/${product.product_id}`}>
                       İNCELE
                     </Link>
                   </Button>
-                  <Button className="flex-1 bg-green-600 text-white hover:bg-green-700 font-bold rounded-none transition-all duration-300 hover:scale-105" disabled={!product.inStock}>
+                  <Button className="flex-1 bg-green-600 text-white hover:bg-green-700 font-bold rounded-none transition-all duration-300 hover:scale-105">
                     <ShoppingCart className="mr-2 h-4 w-4" />
                     SEPETE EKLE
                   </Button>
                 </CardFooter>
               </Card>
+              </Link>
             ))}
           </div>
 
