@@ -260,7 +260,7 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="flex gap-3 relative z-10">
                   <Button variant="outline" className="flex-1 border-2 border-black text-black hover:bg-black hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
-                    <Link href={`/products/${product.category.id}/${product.id}`}>
+                    <Link href={`/products/all/${product.product_id}`}>
                       İNCELE
                     </Link>
                   </Button>

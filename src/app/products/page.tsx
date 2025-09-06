@@ -65,7 +65,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
             <p className="text-sm text-gray-700 line-clamp-3">{excerpt}</p>
             <div className="flex flex-col sm:flex-row gap-2">
               <Button size="sm" variant="outline" asChild className="flex-1">
-                <Link href={`/products/${product.product_id}`}>
+                <Link href={`/products/all/${product.product_id}`}>
                   <Eye className="mr-2 h-4 w-4" />
                   İncele
                 </Link>
@@ -109,7 +109,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
           <p className="text-xs text-gray-600 line-clamp-2">{excerpt}</p>
           <div className="flex gap-1">
             <Button size="sm" variant="outline" className="flex-1 text-xs h-8" asChild>
-              <Link href={`/products/${product.product_id}`}>
+              <Link href={`/products/all/${product.product_id}`}>
                 <Eye className="mr-1 h-3 w-3" />
                 İncele
               </Link>

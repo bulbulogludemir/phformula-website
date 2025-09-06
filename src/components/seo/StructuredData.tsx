@@ -216,17 +216,17 @@ export function ProductSchema({ product, category }: { product: Product; categor
       }
     },
     "category": category.name,
-    "productID": product.id,
-    "sku": product.id,
-    "gtin": `phf${product.id}`,
-    "mpn": product.id.toUpperCase(),
+    "productID": product.product_id,
+    "sku": product.product_id,
+    "gtin": `phf${product.product_id}`,
+    "mpn": product.product_id.toUpperCase(),
     "image": [
-      `https://phformula.com.tr/products/${product.id}/image-1.webp`,
-      `https://phformula.com.tr/products/${product.id}/image-2.webp`,
-      `https://phformula.com.tr/products/${product.id}/image-3.webp`
+      `https://phformula.com.tr/images/${product.product_id}-1.png`,
+      `https://phformula.com.tr/images/${product.product_id}-2.png`,
+      `https://phformula.com.tr/images/${product.product_id}-3.png`
     ],
-    "url": `https://phformula.com.tr/products/${category.id}/${product.id}`,
-    "mainEntityOfPage": `https://phformula.com.tr/products/${category.id}/${product.id}`,
+    "url": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
+    "mainEntityOfPage": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
     "manufacturer": {
       "@type": "Organization",
       "name": "phFormula",
@@ -234,11 +234,11 @@ export function ProductSchema({ product, category }: { product: Product; categor
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://phformula.com.tr/products/${category.id}/${product.id}`,
+      "url": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
       "priceCurrency": "TRY",
       "price": "Özel Fiyat", // Hidden pricing strategy
       "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-      "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
       "seller": {
         "@type": "Organization",

@@ -68,10 +68,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Individual product pages - optimized for e-commerce SEO
   const productPages = getAllProducts().map((product) => ({
-    url: `${baseUrl}/products/${product.category.id}/${product.id}`,
+    url: `${baseUrl}/products/all/${product.product_id}`,
     lastModified: currentDate,
-    changeFrequency: product.inStock ? 'daily' as const : 'weekly' as const,
-    priority: product.inStock ? 0.7 : 0.5, // In-stock products higher priority
+    changeFrequency: 'daily' as const,
+    priority: 0.7,
   }));
 
   // Turkish market specific pages (future expansion)

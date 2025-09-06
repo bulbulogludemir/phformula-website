@@ -69,40 +69,26 @@ export const searchProducts = (query: string): Product[] => {
 
 // Generate product image URL
 export const getProductImageUrl = (productId: string, imageIndex: number = 0): string => {
-  // Try different extensions in order
-  const extensions = ['jpg', 'jpeg', 'png', 'webp']
-  
+  // Based on actual image files, PNG format is primary
   if (imageIndex === 0) {
-    // Main image
-    for (const ext of extensions) {
-      return `/images/products/${productId}-main.${ext}`
-    }
+    // Main image - use -1.png format since main.jpg files are empty
+    return `/images/${productId}-1.png`
   }
   
-  // Additional images
-  for (const ext of extensions) {
-    return `/images/products/${productId}-${imageIndex}.${ext}`
-  }
-  
-  // Fallback
-  return `/images/placeholder.svg`
+  // Additional images (1-5)
+  return `/images/${productId}-${imageIndex}.png`
 }
 
 // Get all available images for a product
 export const getProductImages = (productId: string): string[] => {
   const images: string[] = []
-  const extensions = ['jpg', 'jpeg', 'png', 'webp']
   
-  // Main image
-  for (const ext of extensions) {
-    images.push(`/images/products/${productId}-main.${ext}`)
-  }
+  // Main image (use -1.png as primary)
+  images.push(`/images/${productId}-1.png`)
   
-  // Additional images (1-5)
-  for (let i = 1; i <= 5; i++) {
-    for (const ext of extensions) {
-      images.push(`/images/products/${productId}-${i}.${ext}`)
-    }
+  // Additional images (2-5) if they exist
+  for (let i = 2; i <= 5; i++) {
+    images.push(`/images/${productId}-${i}.png`)
   }
   
   return images

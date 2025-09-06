@@ -14,7 +14,7 @@ interface ProductPageProps {
 
 // Generate SEO metadata for product pages
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const product = getAllProducts().find(p => p.id === params.product);
+  const product = getAllProducts().find(p => p.product_id === params.product);
   const category = getCategories().find(cat => cat.id === params.category);
   
   if (!product || !category) {
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
-  const canonicalUrl = generateCanonicalUrl(`/products/${category.id}/${product.id}`);
+  const canonicalUrl = generateCanonicalUrl(`/products/${category.id}/${product.product_id}`);
   const title = generateTurkishSEOTitle(`${product.name} - ${category.name}`, category.name);
   const description = generateTurkishSEODescription(
     `${product.description} Premium ${category.name.toLowerCase()} kategorisinde özel fiyatlarla.`,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   );
   const keywords = generateTurkishKeywords(product.name.toLowerCase(), category.name, true);
   
-  const ogImage = `https://phformula.com.tr/products/${product.id}/og-image.webp`;
+  const ogImage = `https://phformula.com.tr/products/${product.product_id}/og-image.webp`;
   
   return {
     title,
@@ -80,9 +80,9 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     other: {
       'product:price:amount': 'Özel Fiyat',
       'product:price:currency': 'TRY',
-      'product:availability': product.inStock ? 'instock' : 'oos',
+      'product:availability': 'instock',
       'product:condition': 'new',
-      'product:retailer_item_id': product.id,
+      'product:retailer_item_id': product.product_id,
       'product:brand': 'phFormula',
       'product:category': category.name,
       'og:image:width': '1200',
@@ -92,16 +92,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const product = getAllProducts().find(p => p.id === params.product);
+  const product = getAllProducts().find(p => p.product_id === params.product);
   const category = getCategories().find(cat => cat.id === params.category);
   
-  if (!product || !category || product.category.id !== category.id) {
+  if (!product || !category) {
     notFound();
   }
 
-  // Related products from the same category
+  // Related products from the same category  
   const relatedProducts = getAllProducts()
-    .filter(p => p.category.id === category.id && p.id !== product.id)
+    .filter(p => p.category.toLowerCase().includes(category.name.toLowerCase()) && p.product_id !== product.product_id)
     .slice(0, 3);
     
   // Breadcrumb data for structured data
@@ -109,7 +109,7 @@ export default function ProductPage({ params }: ProductPageProps) {
     { name: 'Ana Sayfa', url: 'https://phformula.com.tr' },
     { name: 'Ürünler', url: 'https://phformula.com.tr/products' },
     { name: category.name, url: `https://phformula.com.tr/products/${category.id}` },
-    { name: product.name, url: `https://phformula.com.tr/products/${category.id}/${product.id}` }
+    { name: product.name, url: `https://phformula.com.tr/products/${category.id}/${product.product_id}` }
   ];
 
   return (
