@@ -58,17 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Category pages - high priority for SEO
-  const categoryPages = getCategories().map((category) => ({
-    url: `${baseUrl}/products/${category.id}`,
-    lastModified: currentDate,
-    changeFrequency: 'daily' as const,
-    priority: 0.8, // Categories are important for navigation
-  }));
+  // Category pages are now handled via query parameters on /products page
+  // So we don't need separate routes for categories
 
   // Individual product pages - optimized for e-commerce SEO
   const productPages = getAllProducts().map((product) => ({
-    url: `${baseUrl}/products/all/${product.product_id}`,
+    url: `${baseUrl}/products/${product.product_id}`,
     lastModified: currentDate,
     changeFrequency: 'daily' as const,
     priority: 0.7,
@@ -127,7 +122,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Combine all pages and sort by priority for optimal crawling
   const allPages = [
     ...staticPages,
-    ...categoryPages,
     ...productPages,
     ...localPages,
     ...seoLandingPages,

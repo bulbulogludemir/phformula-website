@@ -124,7 +124,7 @@ export default function CheckoutPage() {
                 onClick={() => {
                   const items = cartItems.map(item => `• ${item.name} (${item.quantity} adet - ${item.price}₺)`).join('\n');
                   const message = `Merhaba phFormula! Sipariş vermek istiyorum:\n\n🛒 SEPETİM:\n${items}\n\n💰 TOPLAM: ${total.toFixed(2)}₺\n\n🎁 Size özel indirim var mı? Lütfen en iyi fiyatı verin!\n\n🚚 Teslimat: Hızlı kargo istiyorum.`;
-                  window.open(`https://wa.me/905551234567?text=${encodeURIComponent(message)}`, '_blank');
+                  window.open(`https://wa.me/905358726752?text=${encodeURIComponent(message)}`, '_blank');
                 }}
               >
                 <MessageCircle className="mr-3 h-6 w-6" />

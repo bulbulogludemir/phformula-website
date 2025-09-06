@@ -186,7 +186,7 @@ export default function RootLayout({
                 locale: 'tr-TR',
                 currency: 'TRY',
                 country: 'Turkey',
-                whatsapp: '+905551234567'
+                whatsapp: '+905358726752'
               };
             `
           }}

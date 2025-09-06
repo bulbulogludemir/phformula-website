@@ -112,7 +112,7 @@ export default function CartPage() {
               </p>
               <div className="space-y-4">
                 <Button size="lg" asChild className="bg-green-600 hover:bg-green-700 text-white font-bold">
-                  <Link href="https://wa.me/905551234567?text=Merhaba%20phFormula!%20Ürünleriniz%20hakkında%20bilgi%20almak%20ve%20alışveriş%20yapmak%20istiyorum%20🛒">
+                  <Link href="https://wa.me/905358726752?text=Merhaba%20phFormula!%20Ürünleriniz%20hakkında%20bilgi%20almak%20ve%20alışveriş%20yapmak%20istiyorum%20🛒">
                     <MessageCircle className="mr-3 h-5 w-5" />
                     WhatsApp'tan Alışveriş Yap
                   </Link>
@@ -323,7 +323,7 @@ export default function CartPage() {
                   onClick={() => {
                     const items = cartItems.map(item => `• ${item.name} (${item.quantity} adet)`).join('\n');
                     const message = `Merhaba phFormula! Sepetimde şu ürünler var ve sipariş vermek istiyorum:\n\n${items}\n\nToplam: ${total.toFixed(2)}₺\n\nSize özel indirimli fiyat alabilir miyim? 🛒✨`;
-                    window.open(`https://wa.me/905551234567?text=${encodeURIComponent(message)}`, '_blank');
+                    window.open(`https://wa.me/905358726752?text=${encodeURIComponent(message)}`, '_blank');
                   }}
                 >
                   <MessageCircle className="mr-3 h-5 w-5" />

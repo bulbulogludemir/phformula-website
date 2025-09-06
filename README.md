@@ -10,7 +10,7 @@ Professional phFormula cosmetics e-commerce website built with Next.js, TypeScri
 - ✅ **Appointment Booking System** - Professional consultation scheduling
 - ✅ **Mobile-First Design** - Optimized for Turkish mobile users
 - ✅ **SEO Optimized** - Turkish metadata and structured data
-- ✅ **Professional Branding** - phFormula brand colors and Swiss positioning
+- ✅ **Professional Branding** - phFormula brand colors and Spanish positioning
 
 ### Product Categories
 1. **Cleansers** - Daily skincare essentials (UV Protect, EXFO Cleanse, GEL Cleanse, etc.)

@@ -43,7 +43,7 @@ export default function Home() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <Badge variant="secondary" className="bg-white text-black text-sm px-6 py-2 font-bold tracking-wider border-0 hover:bg-gray-100 transition-colors">
-                  İSVİÇRE KALİTESİ
+                  İSPANYA KALİTESİ
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
                   <span className="text-white">ph</span><span className="text-gray-300">Formula</span><br />
@@ -60,7 +60,7 @@ export default function Home() {
                   asChild 
                   className="bg-green-600 text-white hover:bg-green-700 font-bold py-4 px-8 rounded-none border-0 transition-all duration-300 hover:scale-105 animate-pulse"
                 >
-                  <Link href="https://wa.me/905551234567?text=Merhaba%20phFormula!%20Ürünleriniz%20hakkında%20bilgi%20almak%20istiyorum%20🌟">
+                  <Link href="https://wa.me/905358726752?text=Merhaba%20phFormula!%20Ürünleriniz%20hakkında%20bilgi%20almak%20istiyorum%20🌟">
                     <MessageCircle className="mr-3 h-5 w-5" />
                     WHATSAPP'TAN SİPARİŞ
                   </Link>
@@ -182,7 +182,7 @@ export default function Home() {
                     className="w-full group-hover:bg-black group-hover:text-white group-hover:border-black transition-all duration-300 font-bold text-base py-6 rounded-none border-2 border-gray-300" 
                     asChild
                   >
-                    <Link href={`/products/${category.id}`}>
+                    <Link href={`/products?category=${category.id}`}>
                       ÜRÜNLERİ GÖRÜNTÜLE
                       <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" />
                     </Link>
@@ -209,7 +209,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
-              <Link key={product.product_id} href={`/products/all/${product.product_id}`} className="block">
+              <Link key={product.product_id} href={`/products/${product.product_id}`} className="block">
                 <Card className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden cursor-pointer">
                 <CardHeader className="relative">
                   <div className="flex justify-between items-start mb-4">
@@ -257,7 +257,7 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="flex gap-3 relative z-10" onClick={(e) => e.stopPropagation()}>
                   <Button variant="outline" className="flex-1 border-2 border-black text-black hover:bg-black hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
-                    <Link href={`/products/all/${product.product_id}`}>
+                    <Link href={`/products/${product.product_id}`}>
                       İNCELE
                     </Link>
                   </Button>
@@ -299,7 +299,7 @@ export default function Home() {
           
           <div className="text-center">
             <Button size="lg" variant="default" asChild className="bg-black hover:bg-gray-900 text-white font-bold px-12 py-4 rounded-none transition-all duration-300 hover:scale-105">
-              <Link href="https://instagram.com/phformula" target="_blank">
+              <Link href="https://instagram.com/nkguzellik" target="_blank">
                 <Instagram className="mr-3 h-6 w-6" />
                 INSTAGRAM'DA TAKİP ET
               </Link>

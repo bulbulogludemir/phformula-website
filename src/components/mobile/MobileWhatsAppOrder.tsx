@@ -45,7 +45,7 @@ export function MobileWhatsAppOrder({
   const [currentOffer, setCurrentOffer] = useState(0);
   const [showTrustDetails, setShowTrustDetails] = useState(false);
   
-  const whatsappNumber = "905551234567";
+  const whatsappNumber = "905358726752";
   
   // Mobile-optimized offers with psychological triggers
   const mobileOffers = [
@@ -358,7 +358,7 @@ export function MobileStickyWhatsApp() {
 
   const handleClick = () => {
     const message = encodeURIComponent(`Merhaba phFormula! Ürünleriniz hakkında bilgi almak istiyorum. 🌟`);
-    const whatsappUrl = `https://wa.me/905551234567?text=${message}`;
+    const whatsappUrl = `https://wa.me/905358726752?text=${message}`;
     
     if (navigator.vibrate) {
       navigator.vibrate([50, 30, 50]);

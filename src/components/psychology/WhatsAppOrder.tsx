@@ -23,7 +23,7 @@ export function WhatsAppOrder({
 }: WhatsAppOrderProps) {
   const [isClicked, setIsClicked] = useState(false);
   
-  const whatsappNumber = "905551234567"; // Replace with actual number
+  const whatsappNumber = "905358726752";
   
   const createWhatsAppMessage = () => {
     const message = `🌟 Merhaba phFormula Türkiye!
@@ -170,7 +170,7 @@ export function QuickWhatsApp() {
   
   const handleClick = () => {
     const message = encodeURIComponent(`Merhaba phFormula! Ürünleriniz hakkında bilgi almak istiyorum. 🌟`);
-    const whatsappUrl = `https://wa.me/905551234567?text=${message}`;
+    const whatsappUrl = `https://wa.me/905358726752?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 

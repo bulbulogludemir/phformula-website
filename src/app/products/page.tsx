@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -131,7 +132,8 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
     )
 }
 
-export default function ProductsPage() {
+function ProductsPageContent() {
+  const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
@@ -140,6 +142,19 @@ export default function ProductsPage() {
 
   const allProducts = getAllProducts()
   const categories = getCategories()
+
+  // Read URL parameters and set initial filters
+  useEffect(() => {
+    const categoryParam = searchParams.get('category')
+    if (categoryParam && categories.some(cat => cat.id === categoryParam)) {
+      setSelectedCategory(categoryParam)
+    }
+    
+    const searchParam = searchParams.get('search')
+    if (searchParam) {
+      setSearchQuery(searchParam)
+    }
+  }, [searchParams, categories])
 
   // Search and filter products
   const filteredProducts = useMemo(() => {
@@ -370,5 +385,20 @@ export default function ProductsPage() {
         </div>
       </section>
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+          <p className="text-gray-600">Ürünler yükleniyor...</p>
+        </div>
+      </div>
+    }>
+      <ProductsPageContent />
+    </Suspense>
   )
 }

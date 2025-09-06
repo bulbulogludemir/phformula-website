@@ -64,7 +64,7 @@ export function OrganizationSchema() {
       "description": "Professional skincare products from Spain"
     },
     "sameAs": [
-      "https://www.instagram.com/phformula_turkiye",
+      "https://www.instagram.com/nkguzellik",
       "https://www.facebook.com/phformulaturkiye",
       "https://twitter.com/phformula_tr",
       "https://www.youtube.com/@phformulaturkiye"
@@ -87,7 +87,7 @@ export function OrganizationSchema() {
       },
       {
         "@type": "ContactPoint",
-        "url": "https://wa.me/905551234567",
+        "url": "https://wa.me/905358726752",
         "contactType": "customer support",
         "availableLanguage": "Turkish",
         "name": "WhatsApp Destek"
@@ -155,7 +155,7 @@ export function WebsiteSchema() {
         "@type": "OrderAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://wa.me/905551234567?text={order_message}",
+          "urlTemplate": "https://wa.me/905358726752?text={order_message}",
           "actionPlatform": "https://schema.org/MobileWebPlatform"
         },
         "query-input": "required name=order_message"
@@ -225,8 +225,8 @@ export function ProductSchema({ product, category }: { product: Product; categor
       `https://phformula.com.tr/images/${product.product_id}-4.png`,
       `https://phformula.com.tr/images/${product.product_id}-5.png`
     ],
-    "url": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
-    "mainEntityOfPage": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
+    "url": `https://phformula.com.tr/products/${product.product_id}`,
+    "mainEntityOfPage": `https://phformula.com.tr/products/${product.product_id}`,
     "manufacturer": {
       "@type": "Organization",
       "name": "phFormula",
@@ -234,7 +234,7 @@ export function ProductSchema({ product, category }: { product: Product; categor
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://phformula.com.tr/products/${category.id}/${product.product_id}`,
+      "url": `https://phformula.com.tr/products/${product.product_id}`,
       "priceCurrency": "TRY",
       "price": "Özel Fiyat", // Hidden pricing strategy
       "priceValidUntil": new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),

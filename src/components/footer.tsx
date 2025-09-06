@@ -20,7 +20,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://instagram.com/phformula"
+                href="https://instagram.com/nkguzellik"
                 target="_blank"
                 className="w-12 h-12 bg-black text-white flex items-center justify-center transition-all duration-300 hover:bg-gray-800 hover:scale-110 group"
               >
@@ -62,20 +62,20 @@ export function Footer() {
           <div className="space-y-6">
             <h4 className="font-black text-xl text-black uppercase tracking-wider">Kategoriler</h4>
             <div className="space-y-3">
-              <Link href="/products/cleansers" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
+              <Link href="/products?category=temizleyiciler" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
                 Temizleyiciler
               </Link>
-              <Link href="/products/recovery" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Tedavi ve İyileştirme
+              <Link href="/products?category=kremler" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
+                Kremler ve Tedavi
               </Link>
-              <Link href="/products/kits" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Özel Kitler
+              <Link href="/products?category=bakım-kitleri" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
+                Bakım Kitleri
               </Link>
-              <Link href="/products/serums" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Serumlar ve Temel Ürünler
+              <Link href="/products?category=serumlar" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
+                Serumlar
               </Link>
-              <Link href="/products/masks" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Maskeler ve Ek Ürünler
+              <Link href="/products?category=maskeler" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
+                Maskeler
               </Link>
             </div>
           </div>
@@ -86,8 +86,8 @@ export function Footer() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 text-gray-700 hover:text-black transition-colors group">
                 <Phone className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                <a href="tel:+905551234567" className="font-light hover:font-medium transition-all">
-                  +90 555 123 45 67
+                <a href="tel:+905358726752" className="font-light hover:font-medium transition-all">
+                  +90 535 872 67 52
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-700 hover:text-black transition-colors group">
