@@ -16,7 +16,7 @@ export interface SEOMetadata {
   twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player';
   locale?: string;
   alternateLocales?: { hrefLang: string; href: string }[];
-  jsonLd?: Record<string, any>;
+  jsonLd?: Record<string, unknown>;
   robots?: string;
   author?: string;
   publisher?: string;
