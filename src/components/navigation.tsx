@@ -23,10 +23,18 @@ export function Navigation() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Logo - Ultra Minimal */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center space-x-3 group">
             <div className="text-xl sm:text-2xl font-black text-black tracking-tight group-hover:text-gray-700 transition-colors">
               <span>ph</span><span className="text-gray-600">Formula</span>
             </div>
+            {/* Ultra thin vertical separator */}
+            <div className="w-px h-6 bg-gray-300"></div>
+            {/* NK Beauty Logo */}
+            <img 
+              src="/nk-beauty-logo.png" 
+              alt="NK Beauty" 
+              className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+            />
           </Link>
 
           {/* Desktop Navigation - Only Products */}
