@@ -39,7 +39,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
   if (viewMode === 'list') {
     return (
       <Link href={`/products/${product.product_id}`} className="block">
-        <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+        <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white">
           <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
             <div className="relative w-full h-full">
               <Image
@@ -56,16 +56,16 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
               )}
             </div>
           </div>
-          <CardContent className="flex-1 p-4 sm:p-6">
+          <CardContent className="flex-1 p-3 sm:p-4 lg:p-6">
             <div className="space-y-3">
               <div>
-                <h3 className="font-bold text-lg text-black line-clamp-2">
+                <h3 className="font-bold text-lg text-black line-clamp-2 min-h-[3.5rem] flex items-start">
                   {product.name}
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">{product.size}</p>
               </div>
-              <p className="text-sm text-gray-700 line-clamp-3">{excerpt}</p>
-              <div className="flex flex-col sm:flex-row gap-2" onClick={(e) => e.stopPropagation()}>
+              <p className="text-sm text-gray-700 line-clamp-3 leading-relaxed">{excerpt}</p>
+              <div className="flex flex-col sm:flex-row gap-2 mt-3" onClick={(e) => e.stopPropagation()}>
                 <Button size="sm" variant="outline" asChild className="flex-1">
                   <Link href={`/products/${product.product_id}`}>
                     <Eye className="mr-2 h-4 w-4" />
@@ -88,7 +88,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
 
   return (
     <Link href={`/products/${product.product_id}`} className="block">
-      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer">
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-white border-gray-200 hover:border-gray-300">
         <div className="relative aspect-square overflow-hidden">
           <Image
             src={imageError ? fallbackImageUrl : mainImageUrl}
@@ -103,22 +103,22 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
             </Badge>
           )}
         </div>
-        <CardContent className="p-4">
+        <CardContent className="p-2 sm:p-3">
           <div className="space-y-3">
             <div>
-              <h3 className="font-bold text-sm text-black line-clamp-2 leading-tight">
+              <h3 className="font-bold text-sm text-black line-clamp-2 leading-tight min-h-[2.5rem] flex items-start">
                 {product.name}
               </h3>
             </div>
-            <p className="text-xs text-gray-600 line-clamp-2">{excerpt}</p>
-            <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
-              <Button size="sm" variant="outline" className="flex-1 text-xs h-8" asChild>
+            <p className="text-xs text-gray-600 line-clamp-3 leading-relaxed">{excerpt}</p>
+            <div className="flex gap-1 mt-2" onClick={(e) => e.stopPropagation()}>
+              <Button size="sm" variant="outline" className="flex-1 text-xs h-7 px-1" asChild>
                 <Link href={`/products/${product.product_id}`}>
                   <Eye className="mr-1 h-3 w-3" />
                   İncele
                 </Link>
               </Button>
-              <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-8" asChild>
+              <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-7 px-1" asChild>
                 <Link href={whatsappUrl} target="_blank">
                   <MessageCircle className="mr-1 h-3 w-3" />
                     WhatsApp
@@ -203,7 +203,7 @@ function ProductsPageContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile-First Hero */}
-      <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-12 sm:py-16">
+      <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-8 sm:py-12 lg:py-16">
         <div className="px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div>
@@ -249,29 +249,29 @@ function ProductsPageContent() {
       </section>
 
       {/* Search and Filters */}
-      <section className="sticky top-14 sm:top-16 z-40 bg-white border-b border-gray-200">
-        <div className="px-4 sm:px-6 py-3">
+      <section className="sticky top-14 sm:top-16 z-40 bg-white/95 backdrop-blur border-b border-gray-200">
+        <div className="px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
           <div className="max-w-7xl mx-auto">
             {/* Search Bar */}
-            <div className="relative mb-3">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <div className="relative mb-2 sm:mb-3">
+              <Search className="absolute left-2.5 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 type="text"
                 placeholder="Ürün ara..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-10 text-sm"
+                className="pl-9 sm:pl-10 h-9 sm:h-10 text-sm bg-gray-50 focus:bg-white border-gray-200"
               />
             </div>
 
             {/* Filters Row */}
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 overflow-x-auto flex-1">
+            <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto flex-1 scrollbar-hide">
                 {/* Category Filter */}
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="text-xs border border-gray-200 rounded px-2 py-1.5 bg-white min-w-0 flex-shrink-0"
+                  className="text-xs border border-gray-200 rounded px-1.5 sm:px-2 py-1.5 bg-white min-w-0 flex-shrink-0 focus:border-gray-400"
                 >
                   <option value="all">Tümü ({allProducts.length})</option>
                   {categories.map(category => (
@@ -285,7 +285,7 @@ function ProductsPageContent() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="text-xs border border-gray-200 rounded px-2 py-1.5 bg-white min-w-0 flex-shrink-0"
+                  className="text-xs border border-gray-200 rounded px-1.5 sm:px-2 py-1.5 bg-white min-w-0 flex-shrink-0 focus:border-gray-400"
                 >
                   <option value="name-asc">A-Z</option>
                   <option value="name-desc">Z-A</option>
@@ -297,7 +297,7 @@ function ProductsPageContent() {
                     variant="ghost"
                     size="sm"
                     onClick={clearFilters}
-                    className="text-xs h-7 px-2 flex-shrink-0"
+                    className="text-xs h-7 px-1.5 sm:px-2 flex-shrink-0 text-red-600 hover:text-red-700 hover:bg-red-50"
                   >
                     Temizle
                   </Button>
@@ -338,8 +338,8 @@ function ProductsPageContent() {
             {filteredProducts.length > 0 ? (
               <div className={
                 viewMode === 'grid'
-                  ? "grid grid-cols-1 gap-3 sm:gap-4"
-                  : "space-y-4"
+                  ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4"
+                  : "space-y-3 sm:space-y-4"
               }>
                 {filteredProducts.map((product) => (
                   <ProductCard 
