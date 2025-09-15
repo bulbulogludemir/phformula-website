@@ -136,7 +136,7 @@ function ProductsPageContent() {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const [viewMode, setViewMode] = useState<ViewMode>('grid')
+  const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [sortBy, setSortBy] = useState<SortOption>('name-asc')
   const [showFilters, setShowFilters] = useState(false)
 
@@ -309,12 +309,14 @@ function ProductsPageContent() {
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-1.5 text-xs ${viewMode === 'grid' ? 'bg-black text-white' : 'bg-white text-gray-600'}`}
+                  title="Galeri Görünümü"
                 >
                   <Grid className="h-3 w-3" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-1.5 text-xs ${viewMode === 'list' ? 'bg-black text-white' : 'bg-white text-gray-600'}`}
+                  title="Liste Görünümü"
                 >
                   <List className="h-3 w-3" />
                 </button>
