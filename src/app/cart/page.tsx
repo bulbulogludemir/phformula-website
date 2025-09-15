@@ -94,7 +94,7 @@ export default function CartPage() {
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const discount = appliedCoupon ? subtotal * 0.1 : 0;
-  const shippingCost = subtotal >= 250 ? 0 : 29.90;
+  const shippingCost = subtotal >= 3000 ? 0 : 29.90;
   const total = subtotal - discount + shippingCost;
 
   if (cartItems.length === 0) {
@@ -289,11 +289,11 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {subtotal < 250 && (
+                {subtotal < 3000 && (
                   <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                     <p className="text-sm text-yellow-800">
                       <Gift className="h-4 w-4 inline mr-1" />
-                      {(250 - subtotal).toFixed(2)}₺ daha alışveriş yaparak ücretsiz kargo kazanın!
+                      {(3000 - subtotal).toFixed(2)}₺ daha alışveriş yaparak ücretsiz kargo kazanın!
                     </p>
                   </div>
                 )}

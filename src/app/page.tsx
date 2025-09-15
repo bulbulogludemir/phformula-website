@@ -318,7 +318,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-black text-black tracking-tight uppercase">Ücretsiz Kargo</h3>
               <p className="text-gray-600 font-light leading-relaxed">
-                250₺ ve üzeri alışverişlerde ücretsiz kargo
+                3000₺ ve üzeri alışverişlerde ücretsiz kargo
               </p>
             </div>
 

@@ -28,12 +28,12 @@ export function Navigation() {
               <span>ph</span><span className="text-gray-600">Formula</span>
             </div>
             {/* Ultra thin vertical separator */}
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
             {/* NK Beauty Logo */}
-            <img 
-              src="/nk-beauty-logo.png" 
-              alt="NK Beauty" 
-              className="h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+            <img
+              src="/nk-beauty-logo.png"
+              alt="NK Beauty"
+              className="hidden sm:block h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
             />
           </Link>
 

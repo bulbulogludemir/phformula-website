@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Instagram, Facebook, ShoppingCart, Truck, CreditCard, Shield } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook, ShoppingCart, Truck, CreditCard, Shield, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function Footer() {
@@ -43,17 +43,11 @@ export function Footer() {
               <Link href="/products" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
                 Tüm Ürünler
               </Link>
-              <Link href="/cart" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Alışveriş Sepeti
-              </Link>
               <Link href="/wishlist" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
                 Favorilerim
               </Link>
               <Link href="/account" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
                 Hesabım
-              </Link>
-              <Link href="/orders" className="block text-base text-gray-700 hover:text-black font-light transition-colors duration-300 hover:font-medium">
-                Siparişlerim
               </Link>
             </div>
           </div>
@@ -91,9 +85,9 @@ export function Footer() {
                 </a>
               </div>
               <div className="flex items-center space-x-3 text-gray-700 hover:text-black transition-colors group">
-                <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                <a href="mailto:destek@phformula.com.tr" className="font-light hover:font-medium transition-all">
-                  destek@phformula.com.tr
+                <MessageCircle className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                <a href="https://wa.me/905358726752?text=Merhaba%20phFormula!%20Destek%20almak%20istiyorum%20%F0%9F%93%9E" target="_blank" className="font-light hover:font-medium transition-all">
+                  WhatsApp Destek
                 </a>
               </div>
               <div className="text-gray-700">
@@ -110,7 +104,7 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             <div className="flex items-center space-x-4 text-gray-700 group hover:text-black transition-colors cursor-pointer">
               <Truck className="h-8 w-8 group-hover:scale-110 transition-transform" />
-              <span className="text-base font-light group-hover:font-medium transition-all uppercase tracking-wide">Ücretsiz Kargo (250₺+)</span>
+              <span className="text-base font-light group-hover:font-medium transition-all uppercase tracking-wide">Ücretsiz Kargo (3000₺+)</span>
             </div>
             <div className="flex items-center space-x-4 text-gray-700 group hover:text-black transition-colors cursor-pointer">
               <Shield className="h-8 w-8 group-hover:scale-110 transition-transform" />
