@@ -40,13 +40,13 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
     return (
       <Link href={`/products/${product.product_id}`} className="block">
         <Card className="flex flex-col sm:flex-row overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer bg-white">
-          <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0">
-            <div className="relative w-full h-full">
+          <div className="w-full sm:w-48 h-48 sm:h-auto flex-shrink-0 bg-gray-50">
+            <div className="relative w-full h-full p-4">
               <Image
                 src={imageError ? fallbackImageUrl : mainImageUrl}
                 alt={product.name}
                 fill
-                className="object-cover"
+                className="object-contain p-2"
                 onError={handleImageError}
               />
               {product.size && (
@@ -88,40 +88,42 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
 
   return (
     <Link href={`/products/${product.product_id}`} className="block">
-      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-white border-gray-200 hover:border-gray-300">
-        <div className="relative aspect-square overflow-hidden">
-          <Image
-            src={imageError ? fallbackImageUrl : mainImageUrl}
-            alt={product.name}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            onError={handleImageError}
-          />
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer bg-white border-gray-200 hover:border-gray-300 h-full flex flex-col">
+        <div className="relative aspect-square overflow-hidden bg-white border-b border-gray-100">
+          <div className="absolute inset-0 p-3 sm:p-4">
+            <Image
+              src={imageError ? fallbackImageUrl : mainImageUrl}
+              alt={product.name}
+              fill
+              className="object-contain group-hover:scale-105 transition-transform duration-300"
+              onError={handleImageError}
+            />
+          </div>
           {product.size && (
-            <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
+            <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs z-10">
               {product.size}
             </Badge>
           )}
         </div>
-        <CardContent className="p-2 sm:p-3">
-          <div className="space-y-3">
-            <div>
-              <h3 className="font-bold text-sm text-black line-clamp-2 leading-tight min-h-[2.5rem] flex items-start">
+        <CardContent className="p-3 sm:p-4 flex-1 flex flex-col">
+          <div className="space-y-2 sm:space-y-3 flex-1 flex flex-col">
+            <div className="flex-1">
+              <h3 className="font-bold text-sm sm:text-base text-black line-clamp-2 leading-tight min-h-[2.8rem] sm:min-h-[3rem]">
                 {product.name}
               </h3>
             </div>
-            <p className="text-xs text-gray-600 line-clamp-3 leading-relaxed">{excerpt}</p>
-            <div className="flex gap-1 mt-2" onClick={(e) => e.stopPropagation()}>
-              <Button size="sm" variant="outline" className="flex-1 text-xs h-7 px-1" asChild>
+            <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed">{excerpt}</p>
+            <div className="flex flex-col gap-2 pt-2" onClick={(e) => e.stopPropagation()}>
+              <Button size="sm" variant="outline" className="w-full text-xs sm:text-sm h-8 sm:h-9" asChild>
                 <Link href={`/products/${product.product_id}`}>
-                  <Eye className="mr-1 h-3 w-3" />
+                  <Eye className="mr-1.5 h-3 w-3 sm:h-4 sm:w-4" />
                   İncele
                 </Link>
               </Button>
-              <Button size="sm" className="flex-1 bg-green-600 hover:bg-green-700 text-xs h-7 px-1" asChild>
+              <Button size="sm" className="w-full bg-green-600 hover:bg-green-700 text-xs sm:text-sm h-8 sm:h-9" asChild>
                 <Link href={whatsappUrl} target="_blank">
-                  <MessageCircle className="mr-1 h-3 w-3" />
-                    WhatsApp
+                  <MessageCircle className="mr-1.5 h-3 w-3 sm:h-4 sm:w-4" />
+                  WhatsApp
                   </Link>
                 </Button>
               </div>
@@ -340,7 +342,7 @@ function ProductsPageContent() {
             {filteredProducts.length > 0 ? (
               <div className={
                 viewMode === 'grid'
-                  ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4"
+                  ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5"
                   : "space-y-3 sm:space-y-4"
               }>
                 {filteredProducts.map((product) => (

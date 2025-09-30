@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Menu, X, MessageCircle, ShoppingBag, Search } from "lucide-react";
+import { Menu, X, MessageCircle, ShoppingBag, Search, Phone, MapPin, Mail } from "lucide-react";
 import { getCategories } from "@/lib/products";
 
 export function Navigation() {
@@ -23,33 +23,88 @@ export function Navigation() {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Logo - Ultra Minimal */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-2 sm:space-x-3 group">
             <div className="text-xl sm:text-2xl font-black text-black tracking-tight group-hover:text-gray-700 transition-colors">
               <span>ph</span><span className="text-gray-600">Formula</span>
             </div>
             {/* Ultra thin vertical separator */}
-            <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
-            {/* NK Beauty Logo */}
+            <div className="w-px h-6 sm:h-8 bg-gray-300"></div>
+            {/* NK Beauty Logo - Visible on all screens */}
             <img
               src="/nk-beauty-logo.png"
               alt="NK Beauty"
-              className="hidden sm:block h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              className="h-8 sm:h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
             />
           </Link>
 
           {/* Desktop Navigation - Only Products */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link 
+            <Link
               href="/products"
               className="flex items-center space-x-2 text-sm font-bold text-black hover:text-gray-700 transition-colors uppercase tracking-wide"
             >
               <ShoppingBag className="h-4 w-4" />
               <span>Ürünler</span>
             </Link>
-            
+
+            {/* Bize Ulaşın - Desktop */}
+            <div className="relative group">
+              <button className="flex items-center space-x-2 text-sm font-bold text-black hover:text-gray-700 transition-colors uppercase tracking-wide">
+                <Phone className="h-4 w-4" />
+                <span>Bize Ulaşın</span>
+              </button>
+
+              {/* Dropdown */}
+              <div className="absolute right-0 mt-2 w-80 bg-white border border-gray-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="p-4 space-y-3">
+                  <h3 className="font-bold text-sm text-black uppercase tracking-wide border-b pb-2">İletişim Bilgileri</h3>
+
+                  <div className="flex items-start space-x-3">
+                    <Phone className="h-4 w-4 mt-1 text-gray-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase">Telefon</p>
+                      <a href="tel:+905358726752" className="text-sm text-black hover:text-gray-700">
+                        +90 535 872 67 52
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <MessageCircle className="h-4 w-4 mt-1 text-green-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase">WhatsApp</p>
+                      <a href={whatsappUrl} target="_blank" className="text-sm text-black hover:text-gray-700">
+                        +90 535 872 67 52
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <Mail className="h-4 w-4 mt-1 text-gray-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase">E-posta</p>
+                      <a href="mailto:info@nkbeauty.com.tr" className="text-sm text-black hover:text-gray-700">
+                        info@nkbeauty.com.tr
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="h-4 w-4 mt-1 text-gray-600 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase">Adres</p>
+                      <p className="text-sm text-gray-700">
+                        İstanbul, Türkiye
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* WhatsApp CTA */}
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-4 py-2 h-8 transition-all duration-300"
               asChild
             >

@@ -3,6 +3,7 @@ import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { ThemeProvider } from "next-themes";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { generateTurkishSEOTitle, generateTurkishSEODescription, generateTurkishKeywords } from "@/lib/seo";
@@ -158,39 +159,9 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <FloatingWhatsApp />
           </div>
         </ThemeProvider>
-        
-        {/* Performance and Analytics Scripts */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Optimize loading performance
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-              
-              // Preload critical resources
-              const preloadImage = (src) => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                link.href = src;
-                document.head.appendChild(link);
-              };
-              
-              // Turkish market optimization - Track user engagement
-              window.phFormula = {
-                locale: 'tr-TR',
-                currency: 'TRY',
-                country: 'Turkey',
-                whatsapp: '+905358726752'
-              };
-            `
-          }}
-        />
       </body>
     </html>
   );
