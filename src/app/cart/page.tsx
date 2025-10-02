@@ -183,24 +183,24 @@ export default function CartPage() {
                       {/* Quantity Controls */}
                       <div className="flex items-center justify-between mt-4">
                         <div className="flex items-center space-x-3">
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
+                          <Button
+                            variant="outline"
+                            size="sm"
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="hover:bg-black hover:text-white"
+                            className="hover:bg-gray-100"
                           >
                             <Minus className="h-4 w-4" />
                           </Button>
-                          <Input 
-                            value={item.quantity} 
+                          <Input
+                            value={item.quantity}
                             className="w-16 text-center"
                             readOnly
                           />
-                          <Button 
-                            variant="outline" 
+                          <Button
+                            variant="outline"
                             size="sm"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="hover:bg-black hover:text-white"
+                            className="hover:bg-gray-100"
                           >
                             <Plus className="h-4 w-4" />
                           </Button>
@@ -236,12 +236,12 @@ export default function CartPage() {
               <CardContent>
                 {!appliedCoupon ? (
                   <div className="flex space-x-2">
-                    <Input 
+                    <Input
                       placeholder="Kupon kodunu girin"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
                     />
-                    <Button onClick={applyCoupon} variant="outline" className="hover:bg-black hover:text-white">
+                    <Button onClick={applyCoupon} variant="outline" className="hover:bg-gray-100">
                       Uygula
                     </Button>
                   </div>
@@ -332,10 +332,10 @@ export default function CartPage() {
                 
                 <div className="w-full text-center">
                   <p className="text-xs text-gray-600 mb-2">veya</p>
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     variant="outline"
-                    className="w-full border-2 border-black text-black hover:bg-black hover:text-white font-bold"
+                    className="w-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-bold"
                     asChild
                   >
                     <Link href="/checkout">

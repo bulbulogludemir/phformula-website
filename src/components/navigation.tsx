@@ -134,12 +134,12 @@ export function Navigation() {
                 {/* All Products Link */}
                 <Link
                   href="/products"
-                  className="flex items-center space-x-3 py-3 px-4 bg-gray-50 hover:bg-black hover:text-white transition-all duration-300 font-bold text-sm uppercase tracking-wide"
+                  className="flex items-center space-x-3 py-3 px-4 bg-gray-50 hover:bg-gray-900 hover:text-white transition-all duration-300 font-bold text-sm uppercase tracking-wide"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <ShoppingBag className="h-4 w-4" />
                   <span>Tüm Ürünler</span>
-                  <Badge className="ml-auto bg-black text-white text-xs">
+                  <Badge className="ml-auto bg-gray-900 text-white text-xs">
                     {categories.reduce((total, cat) => total + cat.count, 0)}
                   </Badge>
                 </Link>

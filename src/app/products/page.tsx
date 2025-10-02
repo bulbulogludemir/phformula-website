@@ -50,7 +50,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
                 onError={handleImageError}
               />
               {product.size && (
-                <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs">
+                <Badge className="absolute bottom-2 left-2 bg-white/90 text-gray-900 text-xs border border-gray-900">
                   {product.size}
                 </Badge>
               )}
@@ -100,7 +100,7 @@ const ProductCard: React.FC<{ product: Product; viewMode: ViewMode }> = ({ produ
             />
           </div>
           {product.size && (
-            <Badge className="absolute bottom-2 left-2 bg-black/70 text-white text-xs z-10">
+            <Badge className="absolute bottom-2 left-2 bg-white/90 text-gray-900 text-xs z-10 border border-gray-900">
               {product.size}
             </Badge>
           )}
@@ -205,7 +205,7 @@ function ProductsPageContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Mobile-First Hero */}
-      <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-8 sm:py-12 lg:py-16">
+      <section className="bg-white border-b-2 border-gray-200 py-8 sm:py-12 lg:py-16">
         <div className="px-4 sm:px-6">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <div>
@@ -213,10 +213,10 @@ function ProductsPageContent() {
                 <ShoppingBag className="mr-2 h-3 w-3" />
                 TÜM ÜRÜNLER
               </Badge>
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-gray-900">
                 phFormula Ürünleri
               </h1>
-              <p className="text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
                 İspanya teknolojisi ile üretilen profesyonel cilt bakım ürünlerini keşfedin
               </p>
             </div>
@@ -224,16 +224,16 @@ function ProductsPageContent() {
             {/* Quick Stats */}
             <div className="flex justify-center items-center space-x-8 text-xs sm:text-sm">
               <div className="text-center">
-                <div className="font-bold text-lg">{allProducts.length}</div>
-                <div className="text-gray-400">Ürün</div>
+                <div className="font-bold text-lg text-gray-900">{allProducts.length}</div>
+                <div className="text-gray-600">Ürün</div>
               </div>
               <div className="text-center">
-                <div className="font-bold text-lg">{categories.length}</div>
-                <div className="text-gray-400">Kategori</div>
+                <div className="font-bold text-lg text-gray-900">{categories.length}</div>
+                <div className="text-gray-600">Kategori</div>
               </div>
               <div className="text-center">
-                <div className="font-bold text-lg">%100</div>
-                <div className="text-gray-400">Orijinal</div>
+                <div className="font-bold text-lg text-gray-900">%100</div>
+                <div className="text-gray-600">Orijinal</div>
               </div>
             </div>
 
@@ -307,17 +307,17 @@ function ProductsPageContent() {
               </div>
 
               {/* View Toggle */}
-              <div className="flex border border-gray-200 rounded overflow-hidden flex-shrink-0">
+              <div className="flex border border-gray-300 rounded overflow-hidden flex-shrink-0">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-1.5 text-xs ${viewMode === 'grid' ? 'bg-black text-white' : 'bg-white text-gray-600'}`}
+                  className={`p-1.5 text-xs ${viewMode === 'grid' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`}
                   title="Galeri Görünümü"
                 >
                   <Grid className="h-3 w-3" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-1.5 text-xs ${viewMode === 'list' ? 'bg-black text-white' : 'bg-white text-gray-600'}`}
+                  className={`p-1.5 text-xs ${viewMode === 'list' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600'}`}
                   title="Liste Görünümü"
                 >
                   <List className="h-3 w-3" />
@@ -397,7 +397,7 @@ export default function ProductsPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
           <p className="text-gray-600">Ürünler yükleniyor...</p>
         </div>
       </div>

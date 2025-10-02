@@ -83,7 +83,7 @@ export function ProductPageClient({ product, relatedProducts }: ProductDetailPro
 
               {product.size && (
                 <div className="absolute bottom-4 left-4">
-                  <Badge className="bg-black/70 text-white text-xs">
+                  <Badge className="bg-white/90 text-gray-900 text-xs border border-gray-900">
                     {product.size}
                   </Badge>
                 </div>

@@ -13,7 +13,7 @@ export function Footer() {
               <div className="text-3xl font-black text-black tracking-tight">
                 <span>ph</span><span className="text-gray-600">Formula</span>
               </div>
-              <Badge variant="secondary" className="bg-black text-white text-xs font-bold tracking-wider border-0">MAĞAZA</Badge>
+              <Badge variant="outline" className="bg-white text-gray-900 text-xs font-bold tracking-wider border-2 border-gray-900">MAĞAZA</Badge>
             </div>
             <p className="text-base text-gray-700 max-w-xs font-light leading-relaxed">
               Türkiye'nin en güvendiği online cilt bakım mağazası. İspanya kalitesinde ürünler, hızlı teslimat.
@@ -22,14 +22,14 @@ export function Footer() {
               <Link
                 href="https://instagram.com/nkguzellik"
                 target="_blank"
-                className="w-12 h-12 bg-black text-white flex items-center justify-center transition-all duration-300 hover:bg-gray-800 hover:scale-110 group"
+                className="w-12 h-12 bg-white border-2 border-gray-900 text-gray-900 flex items-center justify-center transition-all duration-300 hover:bg-gray-50 hover:scale-110 group"
               >
                 <Instagram className="h-6 w-6" />
               </Link>
               <Link
                 href="https://facebook.com/phformula"
                 target="_blank"
-                className="w-12 h-12 bg-black text-white flex items-center justify-center transition-all duration-300 hover:bg-gray-800 hover:scale-110 group"
+                className="w-12 h-12 bg-white border-2 border-gray-900 text-gray-900 flex items-center justify-center transition-all duration-300 hover:bg-gray-50 hover:scale-110 group"
               >
                 <Facebook className="h-6 w-6" />
               </Link>

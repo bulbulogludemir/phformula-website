@@ -42,7 +42,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Badge variant="secondary" className="bg-black text-white text-sm px-6 py-2 font-bold tracking-wider border-0 hover:bg-gray-800 transition-colors">
+                <Badge variant="outline" className="bg-white text-gray-900 text-sm px-6 py-2 font-bold tracking-wider border-2 border-gray-900 hover:bg-gray-50 transition-colors">
                   İSPANYA KALİTESİ
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
@@ -110,8 +110,8 @@ export default function Home() {
               <div className="bg-white text-black p-10 border-2 border-gray-200 shadow-2xl transition-all duration-500 hover:shadow-3xl group">
                 <div className="space-y-8">
                   <div className="flex items-center space-x-6">
-                    <div className="w-16 h-16 bg-black flex items-center justify-center transition-transform group-hover:scale-110">
-                      <Users className="h-8 w-8 text-white" />
+                    <div className="w-16 h-16 bg-gray-100 border-2 border-gray-900 flex items-center justify-center transition-transform group-hover:scale-110">
+                      <Users className="h-8 w-8 text-gray-900" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-black text-black tracking-tight">10.000+</h3>
@@ -125,18 +125,18 @@ export default function Home() {
                       <span className="font-black text-lg">%98</span>
                     </div>
                     <div className="w-full bg-gray-200 h-1">
-                      <div className="bg-black h-1 transition-all duration-1000" style={{width: '98%'}}></div>
+                      <div className="bg-blue-600 h-1 transition-all duration-1000" style={{width: '98%'}}></div>
                     </div>
                   </div>
 
                   <div className="flex space-x-1">
                     {[1,2,3,4,5].map(i => (
-                      <Star key={i} className="h-6 w-6 text-black fill-current" />
+                      <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
                     ))}
                     <span className="ml-3 text-sm text-gray-600 uppercase tracking-wide">(2.847 değerlendirme)</span>
                   </div>
 
-                  <Button className="w-full bg-black hover:bg-gray-900 text-white font-bold py-4 rounded-none border-0 transition-all duration-300 hover:scale-105" asChild>
+                  <Button className="w-full bg-white hover:bg-gray-50 text-gray-900 font-bold py-4 rounded-none border-2 border-gray-900 transition-all duration-300 hover:scale-105" asChild>
                     <Link href="/products">
                       ÜRÜNLERİ KEŞFEDİN
                     </Link>
@@ -163,10 +163,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
-              <Card key={category.id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white hover:-translate-y-4 cursor-pointer">
+              <Card key={category.id} className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-gray-900 bg-white hover:-translate-y-4 cursor-pointer">
                 <CardHeader className="text-center pb-8">
-                  <div className="w-24 h-24 bg-black flex items-center justify-center mx-auto mb-8 group-hover:bg-gray-900 transition-all duration-300">
-                    <Sparkles className="h-12 w-12 text-white" />
+                  <div className="w-24 h-24 bg-gray-100 border-2 border-gray-900 flex items-center justify-center mx-auto mb-8 group-hover:bg-gray-50 transition-all duration-300">
+                    <Sparkles className="h-12 w-12 text-gray-900" />
                   </div>
                   <CardTitle className="text-2xl font-black text-black group-hover:text-gray-900 transition-colors tracking-tight uppercase">
                     {category.name}
@@ -177,9 +177,9 @@ export default function Home() {
                 </CardHeader>
                 
                 <CardFooter className="pt-0">
-                  <Button 
-                    variant="outline" 
-                    className="w-full group-hover:bg-black group-hover:text-white group-hover:border-black transition-all duration-300 font-bold text-base py-6 rounded-none border-2 border-gray-300" 
+                  <Button
+                    variant="outline"
+                    className="w-full group-hover:bg-gray-900 group-hover:text-white group-hover:border-gray-900 transition-all duration-300 font-bold text-base py-6 rounded-none border-2 border-gray-300"
                     asChild
                   >
                     <Link href={`/products?category=${category.id}`}>
@@ -312,7 +312,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
-            <Badge variant="secondary" className="mb-6 bg-black text-white font-bold px-6 py-2 tracking-wider border-0">ÖZEL</Badge>
+            <Badge variant="outline" className="mb-6 bg-white text-gray-900 font-bold px-6 py-2 tracking-wider border-2 border-gray-900">ÖZEL</Badge>
             <h2 className="text-4xl md:text-6xl font-black text-black mb-6 tracking-tight">
               ÇOK SATANLAR
             </h2>
@@ -327,7 +327,7 @@ export default function Home() {
                 <Card className="group hover:shadow-2xl transition-all duration-500 border-2 border-gray-200 hover:border-black bg-white overflow-hidden cursor-pointer">
                 <CardHeader className="relative">
                   <div className="flex justify-between items-start mb-4">
-                    <Badge variant="secondary" className="text-white bg-black border-0 font-bold tracking-wider z-10 relative">
+                    <Badge variant="outline" className="text-gray-900 bg-white border-2 border-gray-900 font-bold tracking-wider z-10 relative">
                       {product.category?.toUpperCase() || ''}
                     </Badge>
                     <div className="flex items-center space-x-2 z-10 relative">
@@ -370,7 +370,7 @@ export default function Home() {
                   )}
                 </CardContent>
                 <CardFooter className="flex gap-3 relative z-10" onClick={(e) => e.stopPropagation()}>
-                  <Button variant="outline" className="flex-1 border-2 border-black text-black hover:bg-black hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
+                  <Button variant="outline" className="flex-1 border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-bold rounded-none transition-all duration-300 hover:scale-105" asChild>
                     <Link href={`/products/${product.product_id}`}>
                       İNCELE
                     </Link>
@@ -386,7 +386,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-16">
-            <Button size="lg" variant="outline" asChild className="border-black text-black hover:bg-black hover:text-white font-bold px-12 py-4 rounded-none transition-all duration-300">
+            <Button size="lg" variant="outline" asChild className="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-bold px-12 py-4 rounded-none transition-all duration-300">
               <Link href="/products">
                 TÜM ÜRÜNLERİ GÖRÜNTÜLE
                 <ArrowRight className="ml-3 h-6 w-6" />
@@ -400,7 +400,7 @@ export default function Home() {
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
-            <Badge variant="secondary" className="mb-6 bg-black text-white font-bold px-6 py-2 tracking-wider border-0">
+            <Badge variant="outline" className="mb-6 bg-white text-gray-900 font-bold px-6 py-2 tracking-wider border-2 border-gray-900">
               #PHFORMULA
             </Badge>
             <h2 className="text-4xl md:text-6xl font-black text-black mb-6 tracking-tight">
@@ -412,7 +412,7 @@ export default function Home() {
           </div>
           
           <div className="text-center">
-            <Button size="lg" variant="default" asChild className="bg-black hover:bg-gray-900 text-white font-bold px-12 py-4 rounded-none transition-all duration-300 hover:scale-105">
+            <Button size="lg" variant="outline" asChild className="bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-900 font-bold px-12 py-4 rounded-none transition-all duration-300 hover:scale-105">
               <Link href="https://instagram.com/nkguzellik" target="_blank">
                 <Instagram className="mr-3 h-6 w-6" />
                 INSTAGRAM'DA TAKİP ET
@@ -427,8 +427,8 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div className="text-center space-y-6 group cursor-pointer">
-              <div className="w-20 h-20 bg-black flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
-                <Truck className="h-10 w-10 text-white" />
+              <div className="w-20 h-20 bg-gray-100 border-2 border-gray-900 flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
+                <Truck className="h-10 w-10 text-gray-900" />
               </div>
               <h3 className="text-2xl font-black text-black tracking-tight uppercase">Ücretsiz Kargo</h3>
               <p className="text-gray-600 font-light leading-relaxed">
@@ -437,8 +437,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-6 group cursor-pointer">
-              <div className="w-20 h-20 bg-black flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
-                <Shield className="h-10 w-10 text-white" />
+              <div className="w-20 h-20 bg-gray-100 border-2 border-gray-900 flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
+                <Shield className="h-10 w-10 text-gray-900" />
               </div>
               <h3 className="text-2xl font-black text-black tracking-tight uppercase">Güvenli Ödeme</h3>
               <p className="text-gray-600 font-light leading-relaxed">
@@ -447,8 +447,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-6 group cursor-pointer">
-              <div className="w-20 h-20 bg-black flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
-                <Award className="h-10 w-10 text-white" />
+              <div className="w-20 h-20 bg-gray-100 border-2 border-gray-900 flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
+                <Award className="h-10 w-10 text-gray-900" />
               </div>
               <h3 className="text-2xl font-black text-black tracking-tight uppercase">Orijinal</h3>
               <p className="text-gray-600 font-light leading-relaxed">
@@ -457,8 +457,8 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-6 group cursor-pointer">
-              <div className="w-20 h-20 bg-black flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
-                <Clock className="h-10 w-10 text-white" />
+              <div className="w-20 h-20 bg-gray-100 border-2 border-gray-900 flex items-center justify-center mx-auto transition-transform duration-300 group-hover:scale-110">
+                <Clock className="h-10 w-10 text-gray-900" />
               </div>
               <h3 className="text-2xl font-black text-black tracking-tight uppercase">Hızlı Teslimat</h3>
               <p className="text-gray-600 font-light leading-relaxed">

@@ -261,9 +261,9 @@ export default function CheckoutPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
-                  <div 
+                  <div
                     className={`p-4 border rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === "credit-card" ? "border-black bg-gray-50" : "border-gray-200"
+                      paymentMethod === "credit-card" ? "border-gray-900 bg-gray-50" : "border-gray-200"
                     }`}
                     onClick={() => setPaymentMethod("credit-card")}
                   >
@@ -283,9 +283,9 @@ export default function CheckoutPage() {
                     </p>
                   </div>
 
-                  <div 
+                  <div
                     className={`p-4 border rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === "bank-transfer" ? "border-black bg-gray-50" : "border-gray-200"
+                      paymentMethod === "bank-transfer" ? "border-gray-900 bg-gray-50" : "border-gray-200"
                     }`}
                     onClick={() => setPaymentMethod("bank-transfer")}
                   >
@@ -404,9 +404,9 @@ export default function CheckoutPage() {
             </Card>
 
             {/* Place Order Button */}
-            <Button 
-              size="lg" 
-              className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4"
+            <Button
+              size="lg"
+              className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4"
               onClick={handleSubmit}
               disabled={isProcessing}
             >
