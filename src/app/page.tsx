@@ -33,31 +33,31 @@ export default function Home() {
       </div>
       <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-black text-white py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black opacity-90"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-300 opacity-5 rounded-full blur-3xl"></div>
+      <section className="relative bg-white text-black py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-white to-gray-50 opacity-90"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-100 opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-100 opacity-20 rounded-full blur-3xl"></div>
         <div className="relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <Badge variant="secondary" className="bg-white text-black text-sm px-6 py-2 font-bold tracking-wider border-0 hover:bg-gray-100 transition-colors">
+                <Badge variant="secondary" className="bg-black text-white text-sm px-6 py-2 font-bold tracking-wider border-0 hover:bg-gray-800 transition-colors">
                   İSPANYA KALİTESİ
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
-                  <span className="text-white">ph</span><span className="text-gray-300">Formula</span><br />
-                  <span className="text-2xl md:text-4xl font-light tracking-widest uppercase text-gray-400">Mağaza</span>
+                  <span className="text-black">ph</span><span className="text-gray-700">Formula</span><br />
+                  <span className="text-2xl md:text-4xl font-light tracking-widest uppercase text-gray-600">Mağaza</span>
                 </h1>
-                <p className="text-xl text-gray-300 leading-relaxed font-light">
+                <p className="text-xl text-gray-700 leading-relaxed font-light">
                   Profesyonel cilt bakım ürünleri online. İspanya kalitesinde formüller, hızlı kargo, güvenli alışveriş.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button 
-                  size="lg" 
-                  asChild 
+                <Button
+                  size="lg"
+                  asChild
                   className="bg-green-600 text-white hover:bg-green-700 font-bold py-4 px-8 rounded-none border-0 transition-all duration-300 hover:scale-105 animate-pulse"
                 >
                   <Link href="https://wa.me/905358726752?text=Merhaba%20phFormula!%20Ürünleriniz%20hakkında%20bilgi%20almak%20istiyorum%20🌟">
@@ -65,7 +65,7 @@ export default function Home() {
                     WHATSAPP'TAN SİPARİŞ
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" asChild className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black font-bold py-4 px-8 rounded-none transition-all duration-300 hover:scale-105">
+                <Button size="lg" variant="outline" asChild className="border-2 border-black bg-transparent text-black hover:bg-black hover:text-white font-bold py-4 px-8 rounded-none transition-all duration-300 hover:scale-105">
                   <Link href="/products">
                     <Star className="mr-3 h-5 w-5" />
                     ÇOK SATANLAR
@@ -75,39 +75,39 @@ export default function Home() {
               </div>
 
               {/* Live Statistics */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 space-y-4">
+              <div className="bg-gray-100 border-2 border-gray-200 rounded-lg p-6 space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300 uppercase tracking-wide">Bugün Sipariş Veren:</span>
-                  <span className="text-white font-bold text-xl animate-pulse">47 kişi</span>
+                  <span className="text-sm text-gray-700 uppercase tracking-wide">Bugün Sipariş Veren:</span>
+                  <span className="text-black font-bold text-xl animate-pulse">47 kişi</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-300 uppercase tracking-wide">Son 1 Saatte:</span>
-                  <span className="text-green-400 font-bold text-xl">12 sipariş</span>
+                  <span className="text-sm text-gray-700 uppercase tracking-wide">Son 1 Saatte:</span>
+                  <span className="text-green-600 font-bold text-xl">12 sipariş</span>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
                 <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
-                  <Truck className="mr-3 h-5 w-5 text-green-400" />
-                  <span className="text-gray-300 uppercase tracking-wide font-medium">Ücretsiz Kargo</span>
+                  <Truck className="mr-3 h-5 w-5 text-green-600" />
+                  <span className="text-gray-700 uppercase tracking-wide font-medium">Ücretsiz Kargo</span>
                 </div>
                 <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
-                  <Shield className="mr-3 h-5 w-5 text-blue-400" />
-                  <span className="text-gray-300 uppercase tracking-wide font-medium">Güvenli WhatsApp</span>
+                  <Shield className="mr-3 h-5 w-5 text-blue-600" />
+                  <span className="text-gray-700 uppercase tracking-wide font-medium">Güvenli WhatsApp</span>
                 </div>
                 <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
-                  <Award className="mr-3 h-5 w-5 text-yellow-400" />
-                  <span className="text-gray-300 uppercase tracking-wide font-medium">%100 Orijinal</span>
+                  <Award className="mr-3 h-5 w-5 text-yellow-600" />
+                  <span className="text-gray-700 uppercase tracking-wide font-medium">%100 Orijinal</span>
                 </div>
                 <div className="flex items-center opacity-80 hover:opacity-100 transition-opacity">
-                  <Zap className="mr-3 h-5 w-5 text-purple-400" />
-                  <span className="text-gray-300 uppercase tracking-wide font-medium">Anında Yanıt</span>
+                  <Zap className="mr-3 h-5 w-5 text-purple-600" />
+                  <span className="text-gray-700 uppercase tracking-wide font-medium">Anında Yanıt</span>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <div className="bg-white text-black p-10 border-0 shadow-2xl transition-all duration-500 hover:shadow-3xl group">
+              <div className="bg-white text-black p-10 border-2 border-gray-200 shadow-2xl transition-all duration-500 hover:shadow-3xl group">
                 <div className="space-y-8">
                   <div className="flex items-center space-x-6">
                     <div className="w-16 h-16 bg-black flex items-center justify-center transition-transform group-hover:scale-110">
@@ -118,7 +118,7 @@ export default function Home() {
                       <p className="text-gray-600 text-sm uppercase tracking-wider">Mutlu Müşteri</p>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600 uppercase tracking-wide">Memnuniyet</span>
@@ -135,7 +135,7 @@ export default function Home() {
                     ))}
                     <span className="ml-3 text-sm text-gray-600 uppercase tracking-wide">(2.847 değerlendirme)</span>
                   </div>
-                  
+
                   <Button className="w-full bg-black hover:bg-gray-900 text-white font-bold py-4 rounded-none border-0 transition-all duration-300 hover:scale-105" asChild>
                     <Link href="/products">
                       ÜRÜNLERİ KEŞFEDİN
